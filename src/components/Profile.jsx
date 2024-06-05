@@ -1,21 +1,19 @@
-import React from "react";
-import Navbar from "./Navbar";
+import React from 'react';
 
-const Content = () => {
-    return (
-        <div className="content">
+const Profile = () => {
+    return <div className='content'>
+        <div>
+            <img src='https://live.staticflickr.com/65535/51177662000_273f764149_b.jpg' />
+        </div>
+        <div>
+            ava + description
+        </div>
+        <div>
+            My posts
             <div>
-                <img
-                    src="https://www.w-dog.ru/wallpapers/9/14/358044626273700/vesna-gory-alpy-dolina-doma-derevya-trava-zelen-nebo.jpg"/>
+                New post
             </div>
             <div>
-                ava + description
-            </div>
-            <div>
-                My posts
-                <div>
-                    new posts
-                </div>
                 <div>
                     post 1
                 </div>
@@ -24,7 +22,7 @@ const Content = () => {
                 </div>
             </div>
         </div>
-    )
+    </div>
 }
 
-export default Content;
+export default Profile;
