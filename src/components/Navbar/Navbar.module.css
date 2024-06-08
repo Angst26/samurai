@@ -3,6 +3,16 @@
     background-color: #458849;
     padding: 10px;
 }
+.nav img{
+    width: 30px;
+    height: auto;
+    border-radius: 30px;
+}
+.friend{
+    font-size: 10px;
+    color: white;
+    text-decoration: none;
+}
 
 .item{
     color: white;

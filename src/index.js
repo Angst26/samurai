@@ -2,12 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import appState from './redux/state';
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
 
-    <App />
+    <App messagesPage={appState.messagesPage} profilePage={appState.profilePage} sidebar={appState.sidebar}/>
   </React.StrictMode>
 );
 
