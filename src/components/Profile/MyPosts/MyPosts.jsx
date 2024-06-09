@@ -8,8 +8,9 @@ const MyPosts = (props) => {
 
 
     let addPost = () => {
+        debugger;
         let text = newPostElement.current.value;
-
+        props.addPost(text);
     }
 
     let postElements = props.posts.map(post => <Post id={post.id} likesCount={post.likesCount} content={post.content}/>)

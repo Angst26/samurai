@@ -7,6 +7,10 @@
     padding: 10px;
 }
 
+.messages {
+    padding: 10px;
+}
+
 .active{
     color: gold;
 }
@@ -15,10 +19,17 @@
 
 }
 
-.messages {
-    padding: 10px;
-}
+
 
 .message {
 
+}
+
+.sendform textarea{
+    min-width: 250px;
+    margin-top: 10px;
+}
+.sendform button{
+    padding:10px;
+    float: left;
 }
