@@ -1,7 +1,5 @@
 
-let rerenderEntireTree = () => {
-    console.log('rerenderEntireTree');
-};
+let rerenderEntireTree = () => {}
 
 const state = {
     profilePage: {
@@ -58,6 +56,7 @@ export let addPost = () => {
         likesCount:0,
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ''
     rerenderEntireTree(state)
 }
 export let changeNewPostText = (text) => {
