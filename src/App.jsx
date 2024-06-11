@@ -13,7 +13,6 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 function App(props) {
   return (
 
-      <BrowserRouter>
         <div className="app-wrapper">
             <Header/>
             <Navbar sidebar={props.state.sidebar}/>
@@ -27,7 +26,6 @@ function App(props) {
                 </Routes>
             </div>
         </div>
-      </BrowserRouter>
     );
 }
 

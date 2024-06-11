@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Posts/Post";
-import {addPostActionCreator, changeNewPostTextActionCreator} from "../../../redux/state";
+import {addPostActionCreater, changeNewPostTextActionCreator} from "../../../redux/state";
 
 
 
@@ -11,7 +11,7 @@ const MyPosts = (props) => {
 
 
     let addPost = () => {
-        props.dispatch(addPostActionCreator());
+        props.dispatch(addPostActionCreater());
     }
     let onPostChange = () => {
 

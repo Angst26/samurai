@@ -1,3 +1,7 @@
+import {profileReducer} from "./profileReducer";
+import {dialogsReducer} from "./dialogsReducer";
+import {sidebarReducer} from "./sidebarReducer";
+
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT';
 const ADD_MESSAGE = 'ADD_MESSAGE';
@@ -57,32 +61,11 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let {posts} = this._state.profilePage;
-            let newPost = {
-                id: posts[posts.length - 1].id + 1,
-                content: this._state.profilePage.newPostText,
-                likesCount: 0,
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._renderEntireTree(this._state)
-            this._state.profilePage.newPostText = ''
-        } else if (action.type === CHANGE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newPostText
-            this._renderEntireTree(this._state)
-        } else if(action.type === ADD_MESSAGE){
-            let {messages} = this._state.messagesPage
-            let newMessage = {
-                id: messages.length + 1,
-                message: this._state.messagesPage.newMessageText
-            }
-            this._state.messagesPage.messages.push(newMessage)
-            this._renderEntireTree(this._state)
-            this._state.messagesPage.newMessageText = ''
-        } else if(action.type === CHANGE_NEW_MESSAGE_TEXT) {
-            this._state.messagesPage.newMessageText = action.message
-            this._renderEntireTree(this._state)
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagePage = dialogsReducer(this._state.messagesPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+        this._renderEntireTree(this._state)
 
     },
 
@@ -100,7 +83,7 @@ export const changeNewPostTextActionCreator = (text) => {
     )
 }
 
-export const addPostActionCreator = () => {
+export const addPostActionCreater = () => {
     return ({
         type: 'ADD-POST',
     })
@@ -108,7 +91,7 @@ export const addPostActionCreator = () => {
 
 export const createNewMessageTextActionCreater = (text) => ({type: CHANGE_NEW_MESSAGE_TEXT, message: text});
 
-export const addMessageActionCreator = () => ({type:ADD_MESSAGE})
+export const addMessageActionCreater = () => ({type: ADD_MESSAGE})
 
 window.store = store
 
