@@ -50,23 +50,21 @@ let store = {
         return this._state;
     },
 
-    addPost() {
-        debugger;
-        let {posts} = this._state.profilePage;
-        let newPost = {
-            id: posts[posts.length - 1].id + 1,
-            content: this._state.profilePage.newPostText,
-            likesCount: 0,
+    dispatch(action) {
+        if(action.type === 'ADD-POST'){
+            let {posts} = this._state.profilePage;
+            let newPost = {
+                id: posts[posts.length - 1].id + 1,
+                content: this._state.profilePage.newPostText,
+                likesCount: 0,
+            }
+            this._state.profilePage.posts.push(newPost)
+            rerenderEntireTree(this._state)
+            this._state.profilePage.newPostText = ''
+        } else if(action.type === 'CHANGE-NEW-POST-TEXT'){
+            this._state.profilePage.newPostText = action.newPostText
+            rerenderEntireTree(this._state)
         }
-
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        rerenderEntireTree(this._state)
-    },
-    changeNewPostText(text) {
-        debugger;
-        this._state.profilePage.newPostText = text
-        rerenderEntireTree(this._state)
     },
 
     subscribe(observer) {
