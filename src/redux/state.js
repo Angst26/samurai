@@ -1,5 +1,7 @@
-let rerenderEntireTree = () => {
-}
+const ADD_POST = 'ADD-POST';
+const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD_MESSAGE';
+const CHANGE_NEW_MESSAGE_TEXT = 'CHANGE_NEW_MESSAGE_TEXT'
 let store = {
     _state: {
         profilePage: {
@@ -24,6 +26,7 @@ let store = {
                 {id: 3, message: "Alles im Lot, danke"},
                 {id: 4, message: "du bist Arschloch"},
             ],
+            newMessageText: String,
         },
 
         sidebar: {
@@ -45,13 +48,16 @@ let store = {
 
         }
     },
+    _renderEntireTree: () => {
+    },
 
-    getState(){
+
+    getState() {
         return this._state;
     },
 
     dispatch(action) {
-        if(action.type === 'ADD-POST'){
+        if (action.type === ADD_POST) {
             let {posts} = this._state.profilePage;
             let newPost = {
                 id: posts[posts.length - 1].id + 1,
@@ -59,18 +65,51 @@ let store = {
                 likesCount: 0,
             }
             this._state.profilePage.posts.push(newPost)
-            rerenderEntireTree(this._state)
+            this._renderEntireTree(this._state)
             this._state.profilePage.newPostText = ''
-        } else if(action.type === 'CHANGE-NEW-POST-TEXT'){
+        } else if (action.type === CHANGE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newPostText
-            rerenderEntireTree(this._state)
+            this._renderEntireTree(this._state)
+        } else if(action.type === ADD_MESSAGE){
+            let {messages} = this._state.messagesPage
+            let newMessage = {
+                id: messages.length + 1,
+                message: this._state.messagesPage.newMessageText
+            }
+            this._state.messagesPage.messages.push(newMessage)
+            this._renderEntireTree(this._state)
+            this._state.messagesPage.newMessageText = ''
+        } else if(action.type === CHANGE_NEW_MESSAGE_TEXT) {
+            this._state.messagesPage.newMessageText = action.message
+            this._renderEntireTree(this._state)
         }
+
     },
 
     subscribe(observer) {
-        rerenderEntireTree = observer
+        this._renderEntireTree = observer
     }
 }
 
+export const changeNewPostTextActionCreator = (text) => {
+    return (
+        {
+            type: 'CHANGE-NEW-POST-TEXT',
+            newPostText: text,
+        }
+    )
+}
+
+export const addPostActionCreator = () => {
+    return ({
+        type: 'ADD-POST',
+    })
+}
+
+export const createNewMessageTextActionCreater = (text) => ({type: CHANGE_NEW_MESSAGE_TEXT, message: text});
+
+export const addMessageActionCreator = () => ({type:ADD_MESSAGE})
+
 window.store = store
+
 export default store;

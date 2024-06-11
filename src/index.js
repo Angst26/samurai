@@ -1,16 +1,10 @@
 import './index.css';
 import store from './redux/state';
-
 import React from 'react';
 import App from './App';
-
 import ReactDOM from "react-dom/client";
 
-
-
 const root = ReactDOM.createRoot(document.getElementById('root'))
-
-
 
 let rerenderEntireTree = (state) => {
 

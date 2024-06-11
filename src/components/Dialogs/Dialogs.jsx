@@ -2,12 +2,12 @@ import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
+import Profile from "../Profile/Profile";
+import {addMessageActionCreator, createNewMessageTextActionCreater} from "../../redux/state";
 
 
 const Dialogs = (props) => {
 //Data
-
-
 
     //Arrays by mapping
 
@@ -17,7 +17,11 @@ const Dialogs = (props) => {
 
     let newMessage = React.createRef()
     function sendMessage() {
-        console.log('сообщение отправлено:' + ` "${newMessage.current.value}"`)
+        props.dispatch(addMessageActionCreator())
+    }
+    let onChangeMessage = () => {
+        let text = newMessage.current.value;
+        props.dispatch(createNewMessageTextActionCreater(text))
     }
 
     return (
@@ -28,7 +32,9 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 {messageElements}
                 <div className={s.sendform}>
-                    <textarea ref={newMessage}/>
+                    <textarea ref={newMessage}
+                    onChange={onChangeMessage}
+                    value={props.newMessageText}/>
                     <div><button onClick={sendMessage}>Отправить</button></div>
                 </div>
             </div>
