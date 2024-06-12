@@ -5,7 +5,7 @@ import Post from "../Profile/MyPosts/Posts/Post";
 import Friend from './Friend/Friend'
 
 const Navbar = (props) => {
-
+    debugger
     let friends = props.sidebar.friendsList.map(friend => <Friend id={friend.id} name={friend.name} postname={friend.postname} img={friend.img}/>)
 
     return <nav className={s.nav}>

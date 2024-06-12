@@ -11,15 +11,15 @@ import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 function App(props) {
+    debugger
   return (
-
         <div className="app-wrapper">
             <Header/>
             <Navbar sidebar={props.state.sidebar}/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='/profile' element={<Profile state={props.state} dispatch={props.dispatch}/>}/>
-                    <Route path='/dialogs' element={<Dialogs state={props.state.messagesPage} dispatch={props.dispatch} newMessageText={props.state.messagesPage.newMessageText}/>}/>
+                    <Route path='/profile' element={<Profile state={props.state.profilePage} dispatch={props.dispatch}/>}/>
+                    <Route path='/dialogs' element={<Dialogs state={props.state.dialogsPage} dispatch={props.dispatch} newMessageText={props.state.dialogsPage.newMessageText}/>}/>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/settings' element={<Settings/>}/>
