@@ -1,6 +1,5 @@
 let initialState = {
     friendsList: [
-
         {
             img: "https://sun9-62.userapi.com/impg/GXKF7qvn3U_lHvLJaHkajrym3OE6N1BnumvOjA/nXJsbA-Ccm4.jpg?size=810x1080&quality=95&sign=f0f9084e9214289ef1e326e28dac546d&type=album",
             id: 1,

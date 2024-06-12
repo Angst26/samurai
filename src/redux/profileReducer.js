@@ -37,7 +37,7 @@ export const changeNewPostTextActionCreator = (text) => {
         }
     )
 }
-export const addPostActionCreater = () => {
+export const addPostActionCreator = () => {
     return ({
         type: 'ADD-POST',
     })
