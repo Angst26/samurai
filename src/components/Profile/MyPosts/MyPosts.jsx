@@ -5,14 +5,16 @@ import Post from "./Posts/Post";
 
 
 const MyPosts = (props) => {
-
+    debugger
     let newPostElement = React.createRef();
 
 
     let onAddPost = () => {
+        debugger
         props.addPost()
     }
     let onPostChange = () => {
+        debugger
         let text = newPostElement.current.value;
         props.changeNewPostText(text)
     }

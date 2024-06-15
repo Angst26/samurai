@@ -1,25 +1,36 @@
-.nav{
+.nav {
     grid-area: n;
     background-color: #458849;
     padding: 10px;
 }
-.nav img{
+
+.nav img {
     width: 30px;
     height: auto;
     border-radius: 30px;
 }
-.friend{
+
+.friend {
     font-size: 10px;
     color: white;
     text-decoration: none;
 }
 
-.item{
+.item {
     color: white;
     text-decoration: none;
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+
 }
 
-.active{
+.active {
     color: rgba(241, 241, 40, 0.85);
     text-decoration: none;
 }
