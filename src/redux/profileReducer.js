@@ -30,6 +30,7 @@ export const profileReducer = (state = initialState, action) => {
             return stateCopy;
         }
         default:
+            debugger
             return state
     }
 }

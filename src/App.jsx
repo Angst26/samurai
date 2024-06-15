@@ -9,12 +9,13 @@ import Settings from "./components/Settings/Settings";
 
 import {Route, Routes} from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import NavbarContainer from "./components/Navbar/NavbarContainer";
 
 function App(props) {
     return (
         <div className="app-wrapper">
             <Header/>
-            <Navbar/>
+            <NavbarContainer/>
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path='/profile'

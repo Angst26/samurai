@@ -1,12 +1,11 @@
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
 import Friend from './Friend/Friend'
-import ShortProfile from './ShortProfile/ShortProfile'
+import ShortProfile from "./ShortProfile/ShortProfile";
 
 const Navbar = (props) => {
-    // let friends = props.store.state.sidebar.friendsList.map(friend => <Friend id={friend.id} name={friend.name}
-    //                                                               postname={friend.postname} img={friend.img}/>)
-
+    debugger
+    let friends = props.friendsList.map(friend => <Friend img={friend.img} name={friend.name} postname={friend.postname} />);
     return <nav className={s.nav}>
         <div>
             <NavLink to='/profile'><ShortProfile/></NavLink>
@@ -28,7 +27,7 @@ const Navbar = (props) => {
         </div>
         <div>
             <p>Friends:</p>
-            {/*{friends}*/}
+            {friends}
         </div>
     </nav>
 }
