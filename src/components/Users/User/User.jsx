@@ -1,4 +1,5 @@
 import s from './User.module.css'
+import userPhoto from '../../../../src/assets/images/img.png'
 
 const User = (props) => {
     let onFollow = () => {
@@ -14,7 +15,7 @@ const User = (props) => {
 
     return (
         <div className={s.container}>
-            <span><img className={s.photo} src={props.img} alt=""/></span>
+            <span><img className={s.photo} src={props.img != null? props.img : userPhoto} alt=""/></span>
             <span className={s.name}>
                 {props.name} {props.postName}
                 <button onClick = {props.isFollowed? onUnfollow : onFollow} className={s.followBtn}>{props.isFollowed? 'unfollow': 'follow'}</button>
@@ -23,8 +24,8 @@ const User = (props) => {
                 </div>
             </span>
             <span className={s.location}>
-                <div>{props.land},</div>
-                <div>{props.city}</div>
+                <div>'props.land'</div>
+                <div>'props.city'</div>
             </span>
         </div>
     )

@@ -14,7 +14,7 @@ let initialState = {
         }
     ]
 }
-debugger
+
 export const sidebarReducer = (state = initialState, action) => {
     return state;
 }

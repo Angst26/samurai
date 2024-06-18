@@ -4,7 +4,7 @@ import Friend from './Friend/Friend'
 import ShortProfile from "./ShortProfile/ShortProfile";
 
 const Navbar = (props) => {
-    debugger
+
     let friends = props.friendsList.map(friend => <Friend img={friend.img} name={friend.name} postname={friend.postname} />);
     return <nav className={s.nav}>
         <div>
