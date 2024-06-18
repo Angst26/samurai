@@ -24,8 +24,8 @@ const User = (props) => {
                 </div>
             </span>
             <span className={s.location}>
-                <div>'props.land'</div>
-                <div>'props.city'</div>
+                <div>country</div>
+                <div>city</div>
             </span>
         </div>
     )
