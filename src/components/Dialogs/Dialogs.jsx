@@ -8,7 +8,6 @@ const Dialogs = (props) => {
 //Data
 
     //Arrays by mapping
-    debugger
     let {dialogs, messages, newMessageText} = props.dialogsPage;
     let dialogElements = dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
 
