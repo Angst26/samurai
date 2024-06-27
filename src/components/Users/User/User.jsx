@@ -1,15 +1,38 @@
 import s from './User.module.css'
 import userPhoto from '../../../../src/assets/images/img.png'
 import {NavLink} from "react-router-dom";
+import axios from "axios";
+import {followUser, unFollowUser} from "../../../api/api";
 
 const User = (props) => {
     let onFollow = () => {
-        props.follow(props.id)
+        props.toggleFollowing(true)
+        followUser(props.id)
+            .then((resultCode) => {
+                if (resultCode === 0) {
+                    props.follow(props.id)
+                }
+                props.toggleFollowing(false)
+            })
+            .catch(() => {
+                props.toggleFollowing(false)
+            })
+
     }
 
     let onUnfollow = () => {
-        debugger
-        props.unfollow(props.id)
+        props.toggleFollowing(true)
+        unFollowUser(props.id)
+            .then((resultCode) => {
+                if (resultCode === 0) {
+                    props.unfollow(props.id)
+                }
+                props.toggleFollowing(false)
+            })
+            .catch(() => {
+                props.toggleFollowing(false)
+            })
+
     }
 
 
@@ -22,15 +45,15 @@ const User = (props) => {
             </span>
             <span className={s.name}>
                 {props.name} {props.postName}
-                <button onClick={props.isFollowed ? onUnfollow : onFollow}
+                <button disabled={props.followingInProgress} onClick={props.isFollowed ? onUnfollow : onFollow}
                         className={s.followBtn}>{props.isFollowed ? 'unfollow' : 'follow'}</button>
                 <div className={s.status}>
                     {props.status}
                 </div>
             </span>
             <span className={s.location}>
-                <div>country</div>
-                <div>city</div>
+                {/*<div>country</div>*/}
+                {/*<div>city</div>*/}
             </span>
         </div>
     )

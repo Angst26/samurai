@@ -23,6 +23,9 @@ const Users = (props) => {
             land={user.land}
             city={user.city}
             isFollowed={user.followed}
+            followingInProgress={props.followingInProgress}
+
+            toggleFollowing = {props.toggleFollowing}
         />
     ));
 
@@ -34,7 +37,7 @@ const Users = (props) => {
                         key={p}
                         className={p === props.currentPage ? styles.selectedPage : ''}
                         onClick={() => props.onPageChange(p)}>
-                           {p}
+                           {`${p}`}
                         </span>
                 ))}
             </div>
