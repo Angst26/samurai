@@ -1,20 +1,16 @@
 import React from 'react';
 import User from "./User/User";
-import styles from "./Users.module.css";
+import Pagination from "./Pagination/Pagination";
 
 const Users = (props) => {
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages = [];
 
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
 
     let users = props.usersList.map(user => (
         <User
-            follow={props.follow}
-            unfollow={props.unfollow}
+            followUser={props.followUser}
+            unfollowUser={props.unfollowUser}
             img={user.photos.small}
             id={user.id}
             name={user.name}
@@ -24,24 +20,17 @@ const Users = (props) => {
             city={user.city}
             isFollowed={user.followed}
             followingInProgress={props.followingInProgress}
-
-            toggleFollowingAdd = {props.toggleFollowingAdd}
-            toggleFollowingDel = {props.toggleFollowingDel}
         />
     ));
 
     return (
         <div>
-            <div>
-                {pages.map(p => (
-                    <span
-                        key={p}
-                        className={p === props.currentPage ? styles.selectedPage : ''}
-                        onClick={() => props.onPageChange(p)}>
-                           {`${p}`}
-                        </span>
-                ))}
-            </div>
+            <Pagination
+                totalPages={pagesCount}
+                currentPage={props.currentPage}
+                onPageChange={props.onPageChange}
+            />
+
             {users}
         </div>
     )

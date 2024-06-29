@@ -1,3 +1,4 @@
+import {api} from "../api/api";
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -35,6 +36,7 @@ export const profileReducer = (state = initialState, action) => {
             }
         }
         case SET_USER_PROFILE:
+            debugger
             return{
                 ...state,
                 profile: action.profile,
@@ -58,10 +60,21 @@ export const addPost = () => {
     })
 }
 
-export const setUserProfile = (profile) => {
+export const setUserProfileSuccess = (profile) => {
     return {
         type: SET_USER_PROFILE,
         profile
     }
+}
+
+//thunks
+
+export const setUserProfile = (userId) => (dispatch) => {
+
+    api.getProfile(userId)
+        .then(profile => {
+            dispatch(setUserProfileSuccess(profile))
+        })
+
 }
 

@@ -1,37 +1,14 @@
 import s from './User.module.css'
 import userPhoto from '../../../../src/assets/images/img.png'
 import {NavLink} from "react-router-dom";
-import {followUser, unFollowUser} from "../../../api/api";
 
 const User = (props) => {
     let onFollow = () => {
-        props.toggleFollowingAdd(props.id )
-        followUser(props.id)
-            .then((resultCode) => {
-                if (resultCode === 0) {
-                    props.follow(props.id)
-                }
-                props.toggleFollowingDel(props.id)
-            })
-            .catch(() => {
-                props.toggleFollowingDel(props.id)
-            })
-
+        props.followUser(props.id)
     }
 
     let onUnfollow = () => {
-        props.toggleFollowingAdd(props.id)
-        unFollowUser(props.id)
-            .then((resultCode) => {
-                if (resultCode === 0) {
-                    props.unfollow(props.id)
-                }
-                props.toggleFollowingDel(props.id)
-            })
-            .catch(() => {
-                props.toggleFollowingDel(props.id)
-            })
-
+        props.unfollowUser(props.id)
     }
 
 
