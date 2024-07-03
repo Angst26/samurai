@@ -1,5 +1,6 @@
 import {connect} from "react-redux";
 import Navbar from "./Navbar";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 let  mapStateToProps = (state) => {
     return{
@@ -12,6 +13,7 @@ let mapDispatchToProps = (dispatch) => {
 
     }
 }
-const NavbarContainer = connect(mapStateToProps,mapDispatchToProps)(Navbar)
+
+const NavbarContainer = connect(mapStateToProps,mapDispatchToProps)(withAuthRedirect(Navbar))
 
 export default NavbarContainer;

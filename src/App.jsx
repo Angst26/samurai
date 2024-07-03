@@ -1,6 +1,6 @@
 import React from "react";
 import './App.css'
-import News from "./components/News/News";
+import NewsContainer from "./components/News/NewsContainer";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
@@ -10,6 +10,7 @@ import NavbarContainer from "./components/Navbar/NavbarContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 
 function App() {
@@ -24,9 +25,11 @@ function App() {
                     <Route path='/dialogs'
                            element={<DialogsContainer />}/>
                     <Route path='/users' element={<UsersContainer/>}/>
-                    <Route path='/news' element={<News/>}/>
+                    <Route path='/news' element={<NewsContainer/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/settings' element={<Settings/>}/>
+                    <Route path='/login' element={<Login/>}/>
+
                 </Routes>
             </div>
         </div>

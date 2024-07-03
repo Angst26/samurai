@@ -5,7 +5,7 @@ import Preloader from "../../common/Preloader/Preloader";
 const ProfileInfo = (props) => {
     return <div>
         <div>{props.profile ?
-            <img src={props.profile.photos.large} alt={}/>
+            <img src={props.profile.photos.large} alt={''}/>
             : <Preloader/>}
         </div>
         {

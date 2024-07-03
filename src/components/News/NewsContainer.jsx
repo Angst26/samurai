@@ -1,6 +1,6 @@
 
 
-const News = () => {
+const NewsContainer = () => {
     return(
         <div>
             News will be here...
@@ -8,4 +8,4 @@ const News = () => {
     )
 }
 
-export default News;
+export default NewsContainer;
