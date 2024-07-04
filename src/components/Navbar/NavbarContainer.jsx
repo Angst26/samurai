@@ -1,19 +1,17 @@
 import {connect} from "react-redux";
 import Navbar from "./Navbar";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
-let  mapStateToProps = (state) => {
-    return{
+let mapStateToProps = (state) => {
+    return {
         friendsList: state.sidebar.friendsList
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return{
 
-    }
-}
-
-const NavbarContainer = connect(mapStateToProps,mapDispatchToProps)(withAuthRedirect(Navbar))
-
-export default NavbarContainer;
+let NavbarContainer = compose(
+    connect(mapStateToProps, {}),
+    withAuthRedirect
+)(Navbar);
+export default NavbarContainer
