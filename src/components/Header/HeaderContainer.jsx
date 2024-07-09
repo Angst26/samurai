@@ -28,5 +28,5 @@ const mapStateToProps = (state) => ({
 
 
 export default connect(mapStateToProps,
-    {getAuthUserData: getAuthUserData}
+    {getAuthUserData}
 )(HeaderContainer);
