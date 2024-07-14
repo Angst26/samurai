@@ -1,12 +1,25 @@
-import s from './Header.module.css'
 import {NavLink} from "react-router-dom";
+import {AppBar, Box, Button, Toolbar, Typography} from "@mui/material";
 
 const Header = (props) => {
-    return <header className={s.header}>
-        <div className={s.login}>{props.isAuth? props.login : <NavLink to={'/login'}>Login</NavLink>}</div>
-        <div></div>
-        <img src='https://www.freelogodesign.org/Content/img/logo-ex-7.png' />
-    </header>
+    return (
+        <AppBar position="static">
+            <Toolbar>
+                <Box display="flex" justifyContent="space-between" width="100%">
+                    <img src='https://www.freelogodesign.org/Content/img/logo-ex-7.png' alt='logo'
+                         style={{height: '40px'}}/>
+
+                    <div>
+                        {props.isAuth ?
+                            (<Typography variant="h6">{props.login}</Typography>
+                            ): (
+                            <Button color="inherit" component={NavLink} to="/login">Login</Button>
+                        )}
+                    </div>
+                </Box>
+            </Toolbar>
+        </AppBar>
+    )
 }
 
 export default Header;

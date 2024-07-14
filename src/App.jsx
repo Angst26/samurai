@@ -11,28 +11,33 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
+import {Box, CssBaseline} from "@mui/material";
 
 
 function App() {
     return (
-        <div className="app-wrapper">
+        <React.Fragment>
+            <CssBaseline/>
             <HeaderContainer/>
-            <NavbarContainer/>
-            <div className='app-wrapper-content'>
-                <Routes>
-                    <Route path='/profile/:userId?'
-                           element={<ProfileContainer/>}/>
-                    <Route path='/dialogs'
-                           element={<DialogsContainer />}/>
-                    <Route path='/users' element={<UsersContainer/>}/>
-                    <Route path='/news' element={<NewsContainer/>}/>
-                    <Route path='/music' element={<Music/>}/>
-                    <Route path='/settings' element={<Settings/>}/>
-                    <Route path='/login' element={<Login/>}/>
+            <Box className="app-wrapper" sx={{ backgroundColor: 'background.default', minHeight: '100vh' }}>
+                <NavbarContainer/>
+                <Box className='app-wrapper-content' sx={{ backgroundColor: 'background.paper', padding: 2 }}>
+                    <Routes>
+                        <Route path='/profile/:userId?'
+                               element={<ProfileContainer/>}/>
+                        <Route path='/dialogs'
+                               element={<DialogsContainer/>}/>
+                        <Route path='/users' element={<UsersContainer/>}/>
+                        <Route path='/news' element={<NewsContainer/>}/>
+                        <Route path='/music' element={<Music/>}/>
+                        <Route path='/settings' element={<Settings/>}/>
+                        <Route path='/login' element={<Login/>}/>
 
-                </Routes>
-            </div>
-        </div>
+                    </Routes>
+                </Box>
+
+            </Box>
+        </React.Fragment>
     );
 }
 

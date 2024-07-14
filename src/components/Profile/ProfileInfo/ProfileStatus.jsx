@@ -1,15 +1,20 @@
 import React from 'react';
+import {Button, TextField, Box, Typography} from '@mui/material';
+
 
 export default class ProfileStatus extends React.Component {
+
     state = {
         editMode: false,
         status: this.props.status,
     }
     activateEditMode = () => {
-        this.setState(
-            {
-                editMode: true
-            })
+        if (this.props.isOwner) {
+            this.setState(
+                {
+                    editMode: true
+                })
+        }
     }
     deactivateEditMode = () => {
         this.setState(
@@ -25,21 +30,42 @@ export default class ProfileStatus extends React.Component {
 
 
     render() {
-        console.log('Rendering ProfileStatus with status:', this.state.status);
-
         return (
-            <div>
-                {!this.state.editMode ?
-                    <div>
-
-                        <span onDoubleClick={this.activateEditMode}>{typeof this.props.status === 'string' ? this.props.status : 'Invalid status'}</span>
-                    </div> :
-                    <div>
-                        <input  onChange={this.onStatusChange}
-                            autoFocus={true} onBlur={this.deactivateEditMode} value={this.state.status} />
-                    </div>}
-            </div>
+            <Box>
+                {!this.state.editMode ? (
+                    <Box display="flex" alignItems="center">
+                        {this.props.isOwner && !this.props.status && (
+                            <Button variant="contained" onClick={this.activateEditMode}>
+                                Set Status
+                            </Button>
+                        )}
+                        <Typography
+                            variant="h6"
+                            onDoubleClick={this.activateEditMode}
+                            sx={{
+                                marginLeft: 2,
+                                backgroundColor: '#f5f5f5',
+                                borderRadius: 1,
+                                padding: 1
+                            }}
+                        >
+                            {this.props.status}
+                        </Typography>
+                    </Box>
+                ) : (
+                    <TextField
+                        variant="outlined"
+                        onChange={this.onStatusChange}
+                        autoFocus
+                        onBlur={this.deactivateEditMode}
+                        value={this.state.status}
+                        label="Status"
+                    />
+                )}
+            </Box>
         )
     }
 
 }
+
+

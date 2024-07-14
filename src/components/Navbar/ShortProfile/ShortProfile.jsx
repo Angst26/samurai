@@ -1,13 +1,12 @@
-import s from './ShortProfile.module.css'
+import {Avatar, Box, Typography} from "@mui/material";
 
 const ShortProfile = () => {
 
     return (
-        <div className={s.profileCard}>
-            <img src="https://live.staticflickr.com/65535/51177662000_273f764149_b.jpg" alt="user"
-                 className={s.profilePhoto}/>
-            <h5><a href="#" className={s.textWhite}>Юрий Кожин</a></h5>
-        </div>
+        <Box display="flex" alignItems="center">
+            <Avatar src="" alt="name"/>
+            <Typography variant="h5" sx={{marginLeft: 2}}>Юрий Кожин</Typography>
+        </Box>
     )
 }
 

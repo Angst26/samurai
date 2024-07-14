@@ -1,6 +1,7 @@
 import React from 'react';
 import User from "./User/User";
 import Pagination from "./Pagination/Pagination";
+import {Box, Stack} from "@mui/material";
 
 const Users = (props) => {
 
@@ -9,6 +10,7 @@ const Users = (props) => {
 
     let users = props.usersList.map(user => (
         <User
+            key={user.id}
             followUser={props.followUser}
             unfollowUser={props.unfollowUser}
             img={user.photos.small}
@@ -24,15 +26,20 @@ const Users = (props) => {
     ));
 
     return (
-        <div>
-            <Pagination
-                totalPages={pagesCount}
-                currentPage={props.currentPage}
-                onPageChange={props.onPageChange}
-            />
+        <Box>
+            <Stack spacing={2} alignItems="center">
+                <Pagination
+                    color={"primary"}
+                    totalPages={pagesCount}
+                    currentPage={props.currentPage}
+                    onPageChange={props.onPageChange}
+                />
+            </Stack>
+            <Box>
+                {users}
+            </Box>
 
-            {users}
-        </div>
+        </Box>
     )
 }
 

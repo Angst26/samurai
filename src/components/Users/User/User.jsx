@@ -1,6 +1,5 @@
-import s from './User.module.css'
-import userPhoto from '../../../../src/assets/images/img.png'
 import {NavLink} from "react-router-dom";
+import {Avatar, Box, Button, Typography} from "@mui/material";
 
 const User = (props) => {
     let onFollow = () => {
@@ -13,25 +12,29 @@ const User = (props) => {
 
 
     return (
-        <div className={s.container}>
-            <span>
-                <NavLink to={`/profile/${props.id}`}>
-                    <img className={s.photo} src={props.img != null ? props.img : userPhoto} alt=""/>
-                </NavLink>
-            </span>
-            <span className={s.name}>
-                {props.name} {props.postName}
-                <button disabled={props.followingInProgress.some(id => id === props.id)} onClick={props.isFollowed ? onUnfollow : onFollow}
-                        className={s.followBtn}>{props.isFollowed ? 'unfollow' : 'follow'}</button>
-                <div className={s.status}>
+        <Box display="flex" align alignItems="center" p={2} borderBottom={"1px solid #ccc"}>
+            <NavLink to={`/profile/${props.id}`}>
+                <Avatar src={props.img } alt={props.name}
+                        sx={{width: 56, height: 56, marginRight: 2}}/>
+            </NavLink>
+            <Box flexGrow={1}>
+                <Typography variant="h6">
+                    {props.name} {props.postName}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
                     {props.status}
-                </div>
-            </span>
-            <span className={s.location}>
-                {/*<div>country</div>*/}
-                {/*<div>city</div>*/}
-            </span>
-        </div>
+                </Typography>
+            </Box>
+            <Button
+                variant={"contained"}
+                color={props.isFollowed ? "secondary" : "primary"}
+                disabled={props.followingInProgress.some(id => id === props.id)}
+                onClick={props.isFollowed ? onUnfollow : onFollow}
+            >
+                {props.isFollowed ? 'unfollow' : 'follow'}
+            </Button>
+
+        </Box>
     )
 }
 

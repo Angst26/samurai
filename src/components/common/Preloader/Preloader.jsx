@@ -1,11 +1,13 @@
 import React from "react";
-import PreloaderGif from '../../../assets/gif/loading-loading-forever.gif'
+import {Box, CircularProgress} from "@mui/material";
 
 
 
-let Preloader = (props) => {
+let Preloader = () => {
     return (
-        <img src={PreloaderGif}/>
+        <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+            <CircularProgress/>
+        </Box>
     )
 }
 
