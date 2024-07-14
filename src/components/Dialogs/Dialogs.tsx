@@ -10,7 +10,7 @@ interface DialogsProps {
     sendMessage: () => void;
     changeNewMessageText: (text: string) => void;
 }
-const Dialogs: React.FC<DialogsProps> = (props) => {
+const Dialogs = (props: DialogsProps) => {
 //Data
 
     //Arrays by mapping

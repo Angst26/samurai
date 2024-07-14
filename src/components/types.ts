@@ -19,3 +19,4 @@ export interface DialogsPage {
 export interface AppState {
     dialogsPage: DialogsPage;
 }
+

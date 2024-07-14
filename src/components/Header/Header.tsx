@@ -1,7 +1,8 @@
 import {NavLink} from "react-router-dom";
 import {AppBar, Box, Button, Toolbar, Typography} from "@mui/material";
+import {IHeader} from "./types";
 
-const Header = (props) => {
+const Header = (props: IHeader) => {
     return (
         <AppBar position="static">
             <Toolbar>

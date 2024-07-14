@@ -2,9 +2,24 @@ import React from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
 import { getAuthUserData} from "../../redux/authReducer";
+import {rootState} from "../../redux/reduxStore";
 
 
-class HeaderContainer extends React.Component {
+interface hCState {}
+
+interface mstp {
+    isAuth: boolean;
+    login: string;
+}
+
+interface mdtp{
+    getAuthUserData: () => void
+}
+
+type hCProps = mstp & mdtp;
+
+
+class HeaderContainer extends React.Component<hCProps, hCState> {
 
     componentDidMount() {
         this.fetchHeaderData()
@@ -21,12 +36,12 @@ class HeaderContainer extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state: rootState) => ({
     isAuth: state.auth.isAuth,
     login: state.auth.login
 })
 
 
-export default connect(mapStateToProps,
+export default  connect(mapStateToProps,
     {getAuthUserData}
 )(HeaderContainer);
