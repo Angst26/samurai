@@ -1,4 +1,6 @@
 import {usersAPI} from "../api/api";
+import {IUsersReducer} from "./interfaces";
+import {IUser} from "../components/Users/usersTypes";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -18,7 +20,7 @@ let initialState = {
     followingInProgress: []
 }
 
-export const usersReducer = (state = initialState, action) => {
+export const usersReducer = (state: IUsersReducer = initialState, action: any) => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -74,36 +76,36 @@ export const usersReducer = (state = initialState, action) => {
 }
 
 //action creators:
-export let followSuccess = (userID) => {
+export let followSuccess = (userID: number) => {
     return {type: FOLLOW, userID}
 }
-export let unfollowSuccess = (userID) => {
+export let unfollowSuccess = (userID: number) => {
     return {type: UNFOLLOW, userID}
 }
 
-export let setUsers = (users) => {
+export let setUsers = (users: IUser[]) => {
     return {type: SET_USERS, users}
 }
 
-export let setCurrentPage = (currentPage) => {
+export let setCurrentPage = (currentPage: number) => {
     return {type: SET_CURRENT_PAGE, currentPage}
 }
-export let setTotalUsersCount = (totalCount) => {
+export let setTotalUsersCount = (totalCount: number) => {
     return {type: SET_TOTAL_USERS_COUNT, totalCount}
 }
-export let toggleIsFetching = (isFetching) => {
+export let toggleIsFetching = (isFetching: boolean) => {
     return {type: TOGGLE_IS_FETCHING, isFetching}
 }
-export let toggleFollowingAdd = (userId) => {
+export let toggleFollowingAdd = (userId: number) => {
     return {type: TOGGLE_FOLLOWING_IN_PROGRESS_ADD, userId}
 }
-export let toggleFollowingDel = (userId) => {
+export let toggleFollowingDel = (userId: number) => {
     return {type: TOGGLE_FOLLOWING_IN_PROGRESS_DEL, array: initialState.followingInProgress.filter(id => id !== userId)}
 }
 
 
 //thunk
-export const getUsers = (page, pageSize) => (dispatch) => {
+export const getUsers = (page: number, pageSize: number) => (dispatch: any) => {
     dispatch(toggleIsFetching(true))
 
     usersAPI.getUsers(page, pageSize)
@@ -114,7 +116,7 @@ export const getUsers = (page, pageSize) => (dispatch) => {
         })
 }
 
-export const followUser = (id) => (dispatch) => {
+export const followUser = (id: number) => (dispatch: any) => {
     dispatch(toggleFollowingAdd(id))
     usersAPI.followUser(id)
         .then((resultCode) => {
@@ -128,7 +130,7 @@ export const followUser = (id) => (dispatch) => {
         })
 
 }
-export const unfollowUser = (id) => (dispatch) => {
+export const unfollowUser = (id: number) => (dispatch: any) => {
 
     dispatch(toggleFollowingAdd(id))
     usersAPI.unfollowUser(id)

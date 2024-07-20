@@ -2,11 +2,11 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React, {RefObject} from "react";
 import {Box} from "@mui/material";
-import {DialogsPage} from "../types";
+import {IDialogsPage} from "./types";
 
 
 interface DialogsProps {
-    dialogsPage: DialogsPage;
+    dialogsPage: IDialogsPage;
     sendMessage: () => void;
     changeNewMessageText: (text: string) => void;
 }

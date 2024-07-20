@@ -1,4 +1,7 @@
 import {authAPI, profileAPI} from "../api/api";
+import {IProfileReducer} from "./interfaces";
+import React from "react";
+import {ActionCreator} from "redux";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT';
@@ -6,10 +9,9 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_CURRENT_USER_ID = 'SET_CURRENT_USER_ID';
 const SET_STATUS = 'SET_STATUS';
 
-let initialState = {
+let initialState  = {
     posts: [
-        {id: 1, content: 'Das ist mein erster Post da', likesCount: 10},
-        {id: 2, content: 'Viel Glueck dir dabei!', likesCount: 16},
+        {id: 1, content: '', likesCount: 0},
     ],
     newPostText: '',
     profile: null,
@@ -17,7 +19,7 @@ let initialState = {
     status: ''
 }
 
-export const profileReducer = (state = initialState, action) => {
+export const profileReducer = (state : IProfileReducer = initialState, action: any) => {
 
     switch (action.type) {
         case ADD_POST: {
@@ -59,7 +61,7 @@ export const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const changeNewPostText = (text) => {
+export const changeNewPostText = (text: string) => {
     return (
         {
             type: CHANGE_NEW_POST_TEXT,
@@ -74,30 +76,31 @@ export const addPost = () => {
 }
 
 
-const setUserProfileSuccessAC = (profile) => {
+const setUserProfileSuccessAC = (profile: any) => {
     return {
         type: SET_USER_PROFILE,
-        profile
+        profile //TODO profile type to define!!!
     }
 }
 
-const setCurrentUserIdAC = (id) => {
+const setCurrentUserIdAC = (id: number) => {
     return {
         type: SET_CURRENT_USER_ID,
         id
     }
 }
 
-const setStatusAC = (status) => {
+const setStatusAC = (status: string) => {
     return {
         type: SET_STATUS,
         status
     }
 }
 
-//thunks: are needed to create action from function object
+//thunks: needed to create action from function object
 
-export const getUserProfile = (userId) => (dispatch) => {
+
+export const getUserProfile = (userId: number) => (dispatch: (arg0: { profile: any; type: string }) => {}) => {
 
     profileAPI.getProfile(userId)
         .then(profile => {
@@ -106,7 +109,7 @@ export const getUserProfile = (userId) => (dispatch) => {
 
 }
 
-export const setCurrentId = () => (dispatch) => {
+export const setCurrentId = () => (dispatch: (arg0: {id: number, type: string} ) => {}) => {
     authAPI.getMyId()
         .then(id => {
             dispatch(setCurrentUserIdAC(id))
@@ -114,14 +117,14 @@ export const setCurrentId = () => (dispatch) => {
 
 }
 
-export const getStatus = (id) => (dispatch) => {
+export const getStatus = (id: number) => (dispatch: (arg0: {type:string, status: string})=> {}) => {
     profileAPI.getStatus(id)
         .then(response => {
             dispatch(setStatusAC(response.data))
         })
 }
 
-export const updateStatus = (status) => (dispatch) => {
+export const updateStatus = (status: string) => (dispatch: (statusAC: { type: string; status: string })=>{}) => {
     profileAPI.updateStatus(status)
         .then(response => {
             if (response.data.resultCode === 0) {

@@ -8,7 +8,7 @@ interface Message {
     message: string;
 }
 
-export interface DialogsPage {
+export interface IDialogsPage {
     dialogs: Dialog[];
     messages: Message[];
     newMessageText: string;
@@ -17,6 +17,6 @@ export interface DialogsPage {
 
 
 export interface AppState {
-    dialogsPage: DialogsPage;
+    dialogsPage: IDialogsPage;
 }
 

@@ -3,7 +3,7 @@ import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {Action, compose} from "redux";
-import {AppState} from "../types";
+import {AppState} from "./types";
 import {ThunkDispatch} from "redux-thunk";
 
 
