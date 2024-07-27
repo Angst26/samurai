@@ -1,7 +1,4 @@
 import {authAPI, profileAPI} from "../api/api";
-import {IProfileReducer} from "./interfaces";
-import React from "react";
-import {ActionCreator} from "redux";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT';
@@ -17,6 +14,18 @@ let initialState  = {
     profile: null,
     myId: null,
     status: ''
+}
+
+export interface IProfileReducer{
+    posts: {
+        id: number,
+        content: string,
+        likesCount: number
+    }[];
+    newPostText: string;
+    profile: any | null;
+    myId: number | null;
+    status: string;
 }
 
 export const profileReducer = (state : IProfileReducer = initialState, action: any) => {
@@ -76,7 +85,7 @@ export const addPost = () => {
 }
 
 
-const setUserProfileSuccessAC = (profile: any) => {
+const setUserProfileAC = (profile: any) => {
     return {
         type: SET_USER_PROFILE,
         profile //TODO profile type to define!!!
@@ -104,7 +113,7 @@ export const getUserProfile = (userId: number) => (dispatch: (arg0: { profile: a
 
     profileAPI.getProfile(userId)
         .then(profile => {
-            dispatch(setUserProfileSuccessAC(profile))
+            dispatch(setUserProfileAC(profile))
         })
 
 }

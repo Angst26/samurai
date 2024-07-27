@@ -7,7 +7,6 @@ import {authReducer} from "./authReducer";
 import {thunk as thunkMiddleware} from "redux-thunk";
 import {Reducer} from "@reduxjs/toolkit";
 import {IDialogsPage} from "../components/Dialogs/types";
-import {IProfileReducer} from "./interfaces";
 
 interface UserState {
 
@@ -38,14 +37,28 @@ interface AuthState {
 
 }
 
+export interface ProfileState{
+    posts: {
+        id: number,
+        content: string,
+        likesCount: number
+    }[];
+    newPostText: string;
+    profile: any | null;
+    myId: number | null;
+    status: string;
+}
+
 
 const rootReducer = combineReducers({
-    profilePage: profileReducer as Reducer<IProfileReducer>,
+    profilePage: profileReducer as Reducer<ProfileState>,
     dialogsPage: dialogsReducer as Reducer<IDialogsPage>,
     usersPage: usersReducer as Reducer<UserState>,
     sidebar: sidebarReducer as Reducer<SidebarState>,
     auth: authReducer as Reducer<AuthState>,
 })
+
+
 
 export type rootState = ReturnType<typeof rootReducer>;
 export const reduxStore = createStore(rootReducer, applyMiddleware(thunkMiddleware));

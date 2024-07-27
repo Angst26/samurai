@@ -1,39 +1,44 @@
 import React from 'react';
-import s from './MyPosts.module.css'
 import Post from "./Posts/Post";
-
+import {ErrorMessage, Field, Form, Formik} from "formik";
+import {Box, Button} from "@mui/material";
 
 
 const MyPosts = (props) => {
-    let newPostElement = React.createRef();
+    // const newPostElement = React.createRef();
 
 
-    let onAddPost = () => {
-        props.addPost()
+
+    const handleSubmit = () => {
     }
-    let onPostChange = () => {
-        let text = newPostElement.current.value;
-        props.changeNewPostText(text)
-    }
+
 
     let postElements = props.posts.map(post => <Post id={post.id} likesCount={post.likesCount} content={post.content}/>)
     return (
-        <div className={s.postsBlock}>
-            My posts
-            <div>
-                <textarea ref={newPostElement}
-                          value={props.newPostText}
-                          onChange={onPostChange}
-                />
-            </div>
-            <div>
-                <button onClick={onAddPost}>Добавить</button>
-            </div>
-            <div className={s.posts}>
-                {postElements}
 
+        <>
+            <Formik
+                initialValues={{newPostText: ''}}
+                onSubmit={handleSubmit}>
+                {({isSubmitting}) => (
+                    <Form>
+                        <Box>
+                            <Field component="textarea" name="newPostText" placeholder="Post text..."/>
+                            <ErrorMessage name="email" component="div"/>
+                        </Box>
+                        <Button type="submit" disabled={isSubmitting}>
+                            Send
+                        </Button>
+                    </Form>
+                )}
+
+            </Formik>
+            <div>
+                {postElements}
             </div>
-        </div>
+        </>
+
+
     )
 }
 

@@ -37,6 +37,15 @@ export const getAuthUserData = () => (dispatch) => {
         })
 }
 
+export const tryLogin = (email, password) => {
+    // const TESTDATA = {
+    //     email: 'ukozin36@gmail.com',
+    //     password: 'j[$P-%2C[Fm<oX]D'
+    // }
+
+    authAPI.login(email, password)
+}
+
 
 
 

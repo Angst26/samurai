@@ -1,5 +1,4 @@
 import {usersAPI} from "../api/api";
-import {IUsersReducer} from "./interfaces";
 import {IUser} from "../components/Users/usersTypes";
 
 const FOLLOW = 'FOLLOW'
@@ -18,6 +17,20 @@ let initialState = {
     currentPage: 1,
     isFetching: true,
     followingInProgress: []
+}
+
+
+export interface IUsersReducer {
+
+    usersList: {
+        id: number;
+        pageSize: number;
+        totalUsersCount: number;
+        currentPage: number;
+        isFetching: boolean;
+        followingInProgress: any[]
+    }[];
+    followingInProgress: { id:number}[]
 }
 
 export const usersReducer = (state: IUsersReducer = initialState, action: any) => {

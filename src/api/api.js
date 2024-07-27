@@ -53,7 +53,15 @@ export const authAPI = {
                 console.log(response.data)
                 return response.data.data.id;
             })
+    },
+
+    login(email, password){
+        return instance.post(`auth/login`, {password, email})
+        .then((response) => {
+            return response.data;
+        })
     }
+
 }
 
 export const profileAPI = {
@@ -62,7 +70,6 @@ export const profileAPI = {
     },
     updateStatus(status) {
         return instance.put('profile/status', {status})
-
     },
 
     getProfile(id) {
