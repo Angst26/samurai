@@ -12,6 +12,8 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/LoginForm";
 import {Box, CssBaseline} from "@mui/material";
+import {Signup} from "./components/Signup/Signup";
+
 
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
                         <Route path='/music' element={<Music/>}/>
                         <Route path='/settings' element={<Settings/>}/>
                         <Route path='/login' element={<LoginPage/>}/>
+                        <Route path='/signup' element={<Signup/>}/>
 
                     </Routes>
                 </Box>

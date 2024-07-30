@@ -61,10 +61,9 @@ const Navbar = (props) => {
                 </ListItemIcon>
                 <ListItemText primary="Settings"/>
             </ListItemButton>
-            <ListItem>
-                <Typography variant="h6">Friends:</Typography>
-
-            </ListItem>
+            <ListItemButton component={NavLink} to='/signup'>
+                <ListItemText primary="Sign up"/>
+            </ListItemButton>
         </List>
     </Box>
 }

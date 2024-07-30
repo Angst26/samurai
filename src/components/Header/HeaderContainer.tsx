@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "./Header";
 import {connect} from "react-redux";
-import { getAuthUserData} from "../../redux/authReducer";
+import {getAuthUserData, logout} from "../../redux/authReducer";
 import {rootState} from "../../redux/reduxStore";
 
 
@@ -14,6 +14,7 @@ interface mstp {
 
 interface mdtp{
     getAuthUserData: () => void
+    logout: () => void
 }
 
 type hCProps = mstp & mdtp;
@@ -29,9 +30,11 @@ class HeaderContainer extends React.Component<hCProps, hCState> {
         this.props.getAuthUserData()
     }
 
+
+
     render() {
         return (
-            <Header {...this.props} isAuth={this.props.isAuth} login={this.props.login}/>
+            <Header {...this.props} isAuth={this.props.isAuth} login={this.props.login} logout={this.props.logout}/>
         )
     }
 }
@@ -43,5 +46,5 @@ export const mapStateToProps = (state: rootState) => ({
 
 
 export default  connect(mapStateToProps,
-    {getAuthUserData}
+    {getAuthUserData, logout}
 )(HeaderContainer);

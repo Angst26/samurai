@@ -1,16 +1,22 @@
+import * as React from 'react';
 import {Box, Button} from "@mui/material";
 import {Formik, Form, Field, ErrorMessage, FormikHelpers} from "formik";
 import * as Yup from 'yup'
-import React from 'react'
-import {tryLogin} from "../../redux/authReducer";
+import {login} from "../../redux/authReducer";
+import {connect} from "react-redux";
+import { Navigate} from "react-router-dom";
+import {rootState} from "../../redux/reduxStore";
 
 interface ILoginFormValues {
     email: string;
     password: string;
-    remember: boolean
+    remember: boolean;
 }
 
-const LoginForm = () => {
+const LoginForm = (props: {
+    login: (email: string, password: string, remember: boolean)=> void
+    isAuth: boolean
+}) => {
 
     const validationSchema = Yup.object({
         email: Yup.string().email('Email is incorrect').required('Email is required'),
@@ -18,7 +24,7 @@ const LoginForm = () => {
     })
     const handleSubmit = async (values: ILoginFormValues, {setSubmitting}: FormikHelpers<ILoginFormValues>) => {
        try {
-           await tryLogin(values.email, values.password)
+           await props.login(values.email, values.password, values.remember)
            console.log(values)
        } catch(error){
            console.log('error', error)
@@ -28,6 +34,9 @@ const LoginForm = () => {
        }
        // alert(JSON.stringify(values, null, 2))
 
+    }
+    if(props.isAuth){
+        return <Navigate to='/profile'/>
     }
 
     return (
@@ -67,4 +76,10 @@ const LoginForm = () => {
     )
 }
 
-export default LoginForm;
+const mapStateToProps =(state:rootState) =>  ({
+    isAuth: state.auth.isAuth,
+})
+
+export default connect((mapStateToProps), {
+    login
+})(LoginForm);

@@ -41,7 +41,6 @@ root.render(
     </React.StrictMode>
 )
 
-window.reduxState = reduxStore
 
 
 
