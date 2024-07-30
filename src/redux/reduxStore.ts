@@ -8,7 +8,7 @@ import {thunk as thunkMiddleware} from "redux-thunk";
 import {Reducer} from "@reduxjs/toolkit";
 import {IDialogsPage} from "../components/Dialogs/types";
 
-interface UserState {
+export interface UserState {
 
     usersList: {
         pageSize: number;
@@ -19,7 +19,7 @@ interface UserState {
     }[]
 }
 
-interface SidebarState {
+export interface SidebarState {
     friendsList:
         {
             img: string;
@@ -29,7 +29,7 @@ interface SidebarState {
         }[]
 }
 
-interface AuthState {
+export interface AuthState {
     userId: number;
     email: string;
     login: string;
