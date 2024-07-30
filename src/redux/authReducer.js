@@ -16,7 +16,7 @@ export const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.data,
-                isAuth: true
+
             }
         default:
             return state
@@ -37,21 +37,29 @@ export const getAuthUserData = () => (dispatch) => {
         })
 }
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-
+export const login = (email, password, rememberMe, setErrors) => (dispatch) => {
     authAPI.login(email, password, rememberMe)
         .then(response => {
             if (response.data.resultCode === 0) {
+                //success
                 dispatch(getAuthUserData())
+            } else  {
+                //went wrong
+                let msg = response.data.messages.length > 0? response.data.messages[0] : 'something went wrong';
+                setErrors({general: msg})
             }
         })
+        .catch(
+            error => {
+                setErrors({general: 'an error occurred', error})
+            }
+        )
 }
 
 export const logout = () => (dispatch) => {
 
     authAPI.logout()
         .then(response => {
-            debugger
             if (response.data.resultCode === 0) {
                 dispatch(setAuthUserData(null, null, null, false))
             }
