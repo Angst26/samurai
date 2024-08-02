@@ -13,7 +13,6 @@ interface mstp {
 }
 
 interface mdtp{
-    getAuthUserData: () => void
     logout: () => void
 }
 
@@ -21,16 +20,6 @@ type hCProps = mstp & mdtp;
 
 
 class HeaderContainer extends React.Component<hCProps, hCState> {
-
-    componentDidMount() {
-        this.fetchHeaderData()
-    }
-
-    fetchHeaderData() {
-        this.props.getAuthUserData()
-    }
-
-
 
     render() {
         return (
@@ -46,5 +35,5 @@ export const mapStateToProps = (state: rootState) => ({
 
 
 export default  connect(mapStateToProps,
-    {getAuthUserData, logout}
+    { logout}
 )(HeaderContainer);

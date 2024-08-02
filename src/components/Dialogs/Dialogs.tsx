@@ -1,6 +1,6 @@
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import React, {RefObject} from "react";
+import React, {FC, RefObject} from "react";
 import { Button, Input} from "@mui/material";
 import {useFormik} from "formik";
 import * as Yup from "yup";
@@ -22,7 +22,7 @@ interface DialogsProps {
     dialogsPage: IDialogsPage;
 }
 
-const Dialogs = (props: DialogsProps) => {
+const Dialogs: FC<DialogsProps> = (props: DialogsProps) => {
 //Data
     const validationSchema = Yup.object(
         {

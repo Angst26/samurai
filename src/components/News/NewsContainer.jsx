@@ -1,3 +1,5 @@
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 const NewsContainer = () => {
@@ -8,4 +10,6 @@ const NewsContainer = () => {
     )
 }
 
-export default NewsContainer;
+export default compose(
+    withAuthRedirect
+)(NewsContainer);

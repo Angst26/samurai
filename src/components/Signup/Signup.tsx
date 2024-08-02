@@ -2,8 +2,10 @@ import React from "react";
 import {ErrorMessage, useFormik} from "formik";
 import {Button, Input} from "@mui/material";
 import * as Yup from "yup";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
-export const Signup = () => {
+const Signup = () => {
 
     const formik = useFormik({
         initialValues: {
@@ -76,3 +78,7 @@ export const Signup = () => {
 
     )
 }
+
+export default compose(
+    withAuthRedirect
+)(Signup)

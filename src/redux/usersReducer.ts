@@ -10,7 +10,7 @@ const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 const TOGGLE_FOLLOWING_IN_PROGRESS_ADD = 'TOGGLE_FOLLOWING_IN_PROGRESS_ADD'
 const TOGGLE_FOLLOWING_IN_PROGRESS_DEL = 'TOGGLE_FOLLOWING_IN_PROGRESS_DEL'
 
-let initialState = {
+const initialState = {
     usersList: [],
     pageSize: 10,
     totalUsersCount: 0,
@@ -21,7 +21,6 @@ let initialState = {
 
 
 export interface IUsersReducer {
-
     usersList: {
         id: number;
         pageSize: number;
@@ -30,6 +29,10 @@ export interface IUsersReducer {
         isFetching: boolean;
         followingInProgress: any[]
     }[];
+    pageSize: number;
+    totalUsersCount: number;
+    currentPage: number;
+    isFetching: boolean;
     followingInProgress: { id:number}[]
 }
 
@@ -118,7 +121,7 @@ export let toggleFollowingDel = (userId: number) => {
 
 
 //thunk
-export const getUsers = (page: number, pageSize: number) => (dispatch: any) => {
+export const requestUsers = (page: number, pageSize: number) => (dispatch: any) => {
     dispatch(toggleIsFetching(true))
 
     usersAPI.getUsers(page, pageSize)

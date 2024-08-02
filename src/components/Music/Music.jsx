@@ -1,3 +1,4 @@
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 const Music = () => {
@@ -8,4 +9,6 @@ const Music = () => {
     )
 }
 
-export default Music;
+export default (
+    withAuthRedirect
+)(Music);

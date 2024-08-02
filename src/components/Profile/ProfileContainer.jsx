@@ -14,7 +14,7 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.router.params.userId
-
+        debugger
         if (userId) {
             this.fetchProfile(userId);
         } else {
@@ -29,7 +29,7 @@ class ProfileContainer extends React.Component {
     }
 
     fetchProfileIfNeeded() {
-        let userId = this.props.myId ||this.props.router.params.userId  ;
+        let userId = this.props.myId || this.props.router.params.userId;
         if (userId) {
             console.log("Fetching profile for userId:", userId);
             this.fetchProfile(userId);
@@ -51,16 +51,16 @@ class ProfileContainer extends React.Component {
 
 
     render() {
-        console.log('myID ',this.props.myId)
+        console.log('myID ', this.props.myId)
         return (
-            <Profile {...this.props} myId={this.props.myId} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
+            <Profile {...this.props} myId={this.props.myId} profile={this.props.profile} status={this.props.status}
+                     updateStatus={this.props.updateStatus}/>
         )
     }
 }
 
 
-
-function withRouter(Component) {
+export function withRouter(Component) {
     function ComponentWithRouterProp(props) {
         let location = useLocation();
         let navigate = useNavigate();

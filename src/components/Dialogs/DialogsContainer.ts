@@ -1,19 +1,19 @@
 import {addMessageActionCreator, changeNewMessageTextActionCreator} from "../../redux/dialogsReducer";
 import Dialogs from "./Dialogs";
-import {connect} from "react-redux";
+import {connect, MapStateToPropsParam} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {Action, compose} from "redux";
-import {AppState} from "./types";
+import {DialogsState, IDialogsPage} from "./types";
 import {ThunkDispatch} from "redux-thunk";
 
 
-let mapStateToProps = (state: AppState) => {
+const mapStateToProps = (state: DialogsState) => {
     return {
         dialogsPage: state.dialogsPage,
     }
 }
 
-let mapDispatchToProps = (dispatch: ThunkDispatch<AppState, void, Action>) => {
+let mapDispatchToProps = (dispatch: ThunkDispatch<DialogsState, void, any>) => {
     return {
         changeNewMessageText: (text: string) => {
             dispatch(changeNewMessageTextActionCreator(text))
@@ -26,7 +26,7 @@ let mapDispatchToProps = (dispatch: ThunkDispatch<AppState, void, Action>) => {
 
 
 
-export default compose(
+export default compose<any>(
     connect(mapStateToProps, mapDispatchToProps),
     withAuthRedirect
 )(Dialogs)

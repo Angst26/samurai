@@ -16,7 +16,8 @@ export interface IDialogsPage {
 
 
 
-export interface AppState {
+export interface DialogsState {
     dialogsPage: IDialogsPage;
 }
+
 

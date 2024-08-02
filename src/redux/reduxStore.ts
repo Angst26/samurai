@@ -2,22 +2,14 @@ import {legacy_createStore as createStore, combineReducers, applyMiddleware} fro
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
-import {usersReducer} from "./usersReducer";
+import {IUsersReducer, usersReducer} from "./usersReducer";
 import {authReducer} from "./authReducer";
 import {thunk as thunkMiddleware} from "redux-thunk";
 import {Reducer} from "@reduxjs/toolkit";
-import {IDialogsPage} from "../components/Dialogs/types";
+import { IDialogsPage} from "../components/Dialogs/types";
+import {appReducer} from "./appReducer";
 
-export interface UserState {
 
-    usersList: {
-        pageSize: number;
-        totalUsersCount: number;
-        currentPage: number;
-        isFetching: boolean;
-        followingInProgress: any[]
-    }[]
-}
 
 export interface SidebarState {
     friendsList:
@@ -48,14 +40,17 @@ export interface ProfileState{
     myId: number | null;
     status: string;
 }
-
+interface AppState {
+    initialized: boolean,
+}
 
 const rootReducer = combineReducers({
     profilePage: profileReducer as Reducer<ProfileState>,
     dialogsPage: dialogsReducer as Reducer<IDialogsPage>,
-    usersPage: usersReducer as Reducer<UserState>,
+    usersPage: usersReducer as Reducer<IUsersReducer>,
     sidebar: sidebarReducer as Reducer<SidebarState>,
     auth: authReducer as Reducer<AuthState>,
+    app: appReducer as Reducer<AppState>,
 })
 
 

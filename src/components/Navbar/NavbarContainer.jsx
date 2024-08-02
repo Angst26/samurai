@@ -12,6 +12,5 @@ let mapStateToProps = (state) => {
 
 let NavbarContainer = compose(
     connect(mapStateToProps, {}),
-    withAuthRedirect
 )(Navbar);
 export default NavbarContainer

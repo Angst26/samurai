@@ -24,6 +24,7 @@
     "redux": "^5.0.1",
     "redux-form": "^8.3.10",
     "redux-thunk": "^3.1.0",
+    "reselect": "^5.1.1",
     "styled-components": "^6.1.11",
     "toolkit": "^1.5.4",
     "web-vitals": "^2.1.4",

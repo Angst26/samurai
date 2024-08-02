@@ -1,3 +1,4 @@
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 const Settings = () => {
@@ -8,4 +9,6 @@ const Settings = () => {
     )
 }
 
-export default Settings;
+export default (
+    withAuthRedirect
+)(Settings);
