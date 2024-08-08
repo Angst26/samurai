@@ -1,9 +1,29 @@
-import s from './ProfileInfo.module.css'
+import {useEffect, useState} from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
 import {Avatar, Box, CircularProgress, Typography} from "@mui/material";
 
-const ProfileInfo = (props) => {
+interface ProfileInfo {
+    profile: {
+        photos: {
+            large: string | undefined
+        };
+        userId: number;
+        fullName: string;
+        contacts: {
+            vk: string;
+        }
+    }
+    myId: number;
+    status: string;
+    updateStatus: (status: string) => void;
+}
+
+const ProfileInfo = (props: ProfileInfo) => {
+    console.log('render ProfileInfo');
+    const [count, setCount] = useState(0);
+
+
     // console.log("props.profile: " ,props.profile)
     return <Box>
         {props.profile ? (
@@ -18,15 +38,15 @@ const ProfileInfo = (props) => {
             <Preloader/>
         )}
         {props.profile ? (
-            <Box className={s.descriptionBlock} sx={{padding: 2}}>
+            <Box  sx={{padding: '10px', fontStyle: 'italic'}}>
                 <ProfileStatus isOwner={props.myId === props.profile.userId}
                                status={props.status}
                                updateStatus={props.updateStatus}/>
 
-                <Typography variant="body1" className={s.contacts}>
+                <Typography variant="body1" >
                     Name: {props.profile.fullName}
                 </Typography>
-                <Typography variant="body1" className={s.contacts}>
+                <Typography variant="body1" >
                     {props.profile.contacts.vk}
                 </Typography>
             </Box>

@@ -1,12 +1,14 @@
 import {authAPI, profileAPI} from "../api/api";
 
-const ADD_POST = 'ADD-POST';
-const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_CURRENT_USER_ID = 'SET_CURRENT_USER_ID';
-const SET_STATUS = 'SET_STATUS';
+const ADD_POST = 'samurai-network/profile-reducer/ADD-POST';
+const DELETE_POST = 'samurai-network/profile-reducer/DELETE-POST';
+const CHANGE_NEW_POST_TEXT = 'samurai-network/profile-reducer/CHANGE-NEW-POST-TEXT';
+const SET_USER_PROFILE = 'samurai-network/profile-reducer/SET_USER_PROFILE';
+const SET_CURRENT_USER_ID = 'samurai-network/profile-reducer/SET_CURRENT_USER_ID';
+const SET_STATUS = 'samurai-network/profile-reducer/SET_STATUS';
 
-let initialState  = {
+
+let initialState = {
     posts: [
         {id: 1, content: '', likesCount: 0},
     ],
@@ -16,7 +18,7 @@ let initialState  = {
     status: ''
 }
 
-export interface IProfileReducer{
+export interface IProfileReducer {
     posts: {
         id: number,
         content: string,
@@ -28,7 +30,7 @@ export interface IProfileReducer{
     status: string;
 }
 
-export const profileReducer = (state : IProfileReducer = initialState, action: any) => {
+export const profileReducer = (state: IProfileReducer = initialState, action: any) => {
 
     switch (action.type) {
         case ADD_POST: {
@@ -43,6 +45,13 @@ export const profileReducer = (state : IProfileReducer = initialState, action: a
                 newPostText: '',
                 posts: [...state.posts, newPost],
             }
+        }
+        case DELETE_POST: {
+            const posts = [...state.posts];
+            return {
+                ...state,
+                posts: posts.filter(post => post.id !== action.id)}
+                ;
         }
         case CHANGE_NEW_POST_TEXT: {
             return {
@@ -83,6 +92,12 @@ export const addPost = () => {
         type: ADD_POST,
     })
 }
+export const deletePostAC = (id: number) => {
+    return ({
+        type: DELETE_POST,
+        id: id,
+    })
+}
 
 
 const setUserProfileAC = (profile: any) => {
@@ -118,7 +133,7 @@ export const getUserProfile = (userId: number) => (dispatch: (arg0: { profile: a
 
 }
 
-export const setCurrentId = () => (dispatch: (arg0: {id: number, type: string} ) => {}) => {
+export const setCurrentId = () => (dispatch: (arg0: { id: number, type: string }) => {}) => {
     authAPI.getMyId()
         .then(id => {
             dispatch(setCurrentUserIdAC(id))
@@ -126,14 +141,14 @@ export const setCurrentId = () => (dispatch: (arg0: {id: number, type: string} )
 
 }
 
-export const getStatus = (id: number) => (dispatch: (arg0: {type:string, status: string})=> {}) => {
+export const getStatus = (id: number) => (dispatch: (arg0: { type: string, status: string }) => {}) => {
     profileAPI.getStatus(id)
         .then(response => {
             dispatch(setStatusAC(response.data))
         })
 }
 
-export const updateStatus = (status: string) => (dispatch: (statusAC: { type: string; status: string })=>{}) => {
+export const updateStatus = (status: string) => (dispatch: (statusAC: { type: string; status: string }) => {}) => {
     profileAPI.updateStatus(status)
         .then(response => {
             if (response.data.resultCode === 0) {

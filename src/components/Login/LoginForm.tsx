@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import { Navigate} from "react-router-dom";
 import {rootState} from "../../redux/reduxStore";
 
-interface ILoginFormValues {
+export interface ILoginFormValues {
     email: string;
     password: string;
     remember: boolean;

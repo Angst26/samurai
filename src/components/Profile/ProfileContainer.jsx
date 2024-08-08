@@ -11,10 +11,12 @@ class ProfileContainer extends React.Component {
         super(props)
         this.props.setCurrentId();
     }
+    shouldComponentUpdate(nextProps, nextState){
+        return nextProps != this.props ||  nextState != this.state;
+    }f
 
     componentDidMount() {
         let userId = this.props.router.params.userId
-        debugger
         if (userId) {
             this.fetchProfile(userId);
         } else {
