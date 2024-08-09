@@ -1,4 +1,4 @@
-import {addMessageActionCreator, changeNewMessageTextActionCreator} from "../../redux/dialogsReducer";
+import {addMessageAC, changeNewMessageTextAC} from "../../redux/dialogsReducer";
 import Dialogs from "./Dialogs";
 import {connect, MapStateToPropsParam} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -16,10 +16,10 @@ const mapStateToProps = (state: DialogsState) => {
 let mapDispatchToProps = (dispatch: ThunkDispatch<DialogsState, void, any>) => {
     return {
         changeNewMessageText: (text: string) => {
-            dispatch(changeNewMessageTextActionCreator(text))
+            dispatch(changeNewMessageTextAC(text))
         },
         sendMessage: () => {
-            dispatch(addMessageActionCreator())
+            dispatch(addMessageAC())
         }
     }
 }

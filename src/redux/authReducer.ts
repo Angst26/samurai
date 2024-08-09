@@ -12,7 +12,7 @@ interface State {
     isAuth: boolean
 }
 
-interface Action<T> {
+export interface Action<T> {
     type: string;
     data? :T;
 }

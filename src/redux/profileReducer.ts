@@ -30,6 +30,7 @@ export interface IProfileReducer {
     status: string;
 }
 
+
 export const profileReducer = (state: IProfileReducer = initialState, action: any) => {
 
     switch (action.type) {
@@ -50,7 +51,8 @@ export const profileReducer = (state: IProfileReducer = initialState, action: an
             const posts = [...state.posts];
             return {
                 ...state,
-                posts: posts.filter(post => post.id !== action.id)}
+                posts: posts.filter(post => post.id !== action.id)
+            }
                 ;
         }
         case CHANGE_NEW_POST_TEXT: {
@@ -124,36 +126,33 @@ const setStatusAC = (status: string) => {
 //thunks: needed to create action from function object
 
 
-export const getUserProfile = (userId: number) => (dispatch: (arg0: { profile: any; type: string }) => {}) => {
-
-    profileAPI.getProfile(userId)
-        .then(profile => {
-            dispatch(setUserProfileAC(profile))
-        })
+export const getUserProfile = (userId: number) => async (dispatch: (arg0: { profile: any; type: string }) => {}) => {
+    const profile = await profileAPI.getProfile(userId)
+    dispatch(setUserProfileAC(profile))
 
 }
 
-export const setCurrentId = () => (dispatch: (arg0: { id: number, type: string }) => {}) => {
-    authAPI.getMyId()
-        .then(id => {
-            dispatch(setCurrentUserIdAC(id))
-        })
-
+export const setCurrentId = () => async (dispatch: (arg0: { id: number, type: string }) => {}) => {
+    const id = await authAPI.getMyId()
+    dispatch(setCurrentUserIdAC(id))
 }
 
-export const getStatus = (id: number) => (dispatch: (arg0: { type: string, status: string }) => {}) => {
-    profileAPI.getStatus(id)
-        .then(response => {
-            dispatch(setStatusAC(response.data))
-        })
+export const getStatus = (id: number) => async (dispatch: (arg0: { type: string, status: string }) => {}) => {
+    const response = await profileAPI.getStatus(id)
+    dispatch(setStatusAC(response.data))
 }
 
-export const updateStatus = (status: string) => (dispatch: (statusAC: { type: string; status: string }) => {}) => {
-    profileAPI.updateStatus(status)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(setStatusAC(status))
-            }
-        })
+export const updateStatus = (status: string) => async (dispatch: (statusAC: {
+    type: string;
+    status: string
+}) => {}) => {
+    const response = await profileAPI.updateStatus(status)
+
+    if (response.data.resultCode === 0) {
+        dispatch(setStatusAC(status))
+    } else {
+        console.error('updateStatus: resultCode is not 0', response.data)
+    }
+
 }
 
