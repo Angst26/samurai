@@ -1,9 +1,9 @@
 import {addMessageAC, changeNewMessageTextAC} from "../../redux/dialogsReducer";
 import Dialogs from "./Dialogs";
-import {connect, MapStateToPropsParam} from "react-redux";
+import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import {Action, compose} from "redux";
-import {DialogsState, IDialogsPage} from "./types";
+import {compose} from "redux";
+import {DialogsState} from "./types";
 import {ThunkDispatch} from "redux-thunk";
 
 

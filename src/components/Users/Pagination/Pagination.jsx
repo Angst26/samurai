@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import {Box, Pagination as MUIPagination} from "@mui/material"; // Предположим, у вас есть стили
 
 const Pagination = ({totalPages, currentPage, onPageChange}) => {
-
-
     const handlePageClick = (page) => {
         onPageChange(page);
     };

@@ -8,6 +8,7 @@ import {thunk as thunkMiddleware} from "redux-thunk";
 import {Reducer} from "@reduxjs/toolkit";
 import { IDialogsPage} from "../components/Dialogs/types";
 import {appReducer} from "./appReducer";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 
@@ -56,4 +57,6 @@ const rootReducer = combineReducers({
 
 
 export type rootState = ReturnType<typeof rootReducer>;
-export const reduxStore = createStore(rootReducer, applyMiddleware(thunkMiddleware));
+export const reduxStore = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));
+
+

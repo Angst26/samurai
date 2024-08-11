@@ -122,9 +122,9 @@ export let toggleFollowingDel = (userId: number) => {
     return {type: TOGGLE_FOLLOWING_IN_PROGRESS_DEL, array: initialState.followingInProgress.filter(id => id !== userId)}
 }
 export let toggleFollowingProgress = (userId: number, flag: boolean) => {
-    if (flag === true) {
+    if (flag) {
         return {type: TOGGLE_FOLLOWING_IN_PROGRESS_ADD, userId}
-    } else if (flag === false) {
+    } else if (!flag) {
         return {
             type: TOGGLE_FOLLOWING_IN_PROGRESS_DEL,
             array: initialState.followingInProgress.filter(id => id !== userId)
@@ -158,14 +158,9 @@ const followingFlow = async (dispatch: any, id: number, apiMethod: any, actionCr
 
 export const followUser = (id: number) => (dispatch: any) => {
     const apiMethod = usersAPI.followUser.bind(usersAPI)
-    const actionCreator = followSuccess;
-
-
-    followingFlow(dispatch, id, apiMethod, actionCreator)
+    followingFlow(dispatch, id, apiMethod, followSuccess)
 }
 export const unfollowUser = (id: number) => (dispatch: any) => {
     const apiMethod = usersAPI.unfollowUser.bind(usersAPI)
-    const actionCreator = unfollowSuccess;
-
-    followingFlow(dispatch, id, apiMethod, actionCreator)
+    followingFlow(dispatch, id, apiMethod, unfollowSuccess)
 }

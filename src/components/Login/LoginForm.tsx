@@ -4,7 +4,7 @@ import {Formik, Form, Field, ErrorMessage, FormikHelpers} from "formik";
 import * as Yup from 'yup'
 import {login} from "../../redux/authReducer";
 import {connect} from "react-redux";
-import { Navigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import {rootState} from "../../redux/reduxStore";
 
 export interface ILoginFormValues {
@@ -14,8 +14,8 @@ export interface ILoginFormValues {
     general?: string;
 }
 
-const LoginForm = (props: {
-    login: (email: string, password: string, remember: boolean, setErrors: any)=> void
+const LoginForm = ({login, isAuth}: {
+    login: (email: string, password: string, remember: boolean, setErrors: any) => void
     isAuth: boolean
 }) => {
 
@@ -25,17 +25,16 @@ const LoginForm = (props: {
     })
     const handleSubmit = async (values: ILoginFormValues, {setSubmitting, setErrors}:
         FormikHelpers<ILoginFormValues>) => {
-       try {
-           await props.login(values.email, values.password, values.remember, setErrors)
-       } catch(error){
-           console.log('error', error)
-       }
-       finally {
-           setSubmitting(false)
-       }
+        try {
+            await login(values.email, values.password, values.remember, setErrors)
+        } catch (error) {
+            console.log('error', error)
+        } finally {
+            setSubmitting(false)
+        }
 
     }
-    if(props.isAuth){
+    if (isAuth) {
         return <Navigate to='/profile'/>
     }
 
@@ -50,13 +49,14 @@ const LoginForm = (props: {
                         <Box>
                             <label htmlFor="email" style={{marginRight: 10}}>Email</label>
                             <Field type="email" name="email"/>
-                            <ErrorMessage name="email" component="div" />
+                            <ErrorMessage name="email" component="div"/>
                         </Box>
 
                         <Box>
                             <label htmlFor="password" style={{marginRight: 10}}>Password</label>
                             <Field type="password" name="password"/>
-                            <ErrorMessage name="password">{msg => <div style={{color: 'red'}}>{msg}</div>}</ErrorMessage>
+                            <ErrorMessage name="password">{msg => <div
+                                style={{color: 'red'}}>{msg}</div>}</ErrorMessage>
                         </Box>
                         <Box>
                             <label htmlFor="remember" style={{marginRight: 10}}>Remember me</label>
@@ -68,15 +68,15 @@ const LoginForm = (props: {
                         </Button>
                     </Form>
                 )}
-
             </Formik>
-
 
         </>
     )
 }
 
-const mapStateToProps =(state:rootState) =>  ({
+
+
+const mapStateToProps = (state: rootState) => ({
     isAuth: state.auth.isAuth,
 })
 
