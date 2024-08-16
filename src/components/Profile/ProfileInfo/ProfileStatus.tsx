@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, TextField, Box, Typography} from '@mui/material';
+import {Button, TextField, Box} from '@mui/material';
 
 interface ProfileStatusProps {
     status: string;
@@ -7,13 +7,12 @@ interface ProfileStatusProps {
     updateStatus: (status: string) => void;
 }
 
-const ProfileStatus = (props: ProfileStatusProps) => {
-    console.log('render Status')
+const ProfileStatus = ({isOwner, updateStatus, ...props}: ProfileStatusProps) => {
     const [editMode, setEditMode] = useState(false);
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState(props.status)
     const [count, setCount] = useState(0);
-    useEffect(() => {
 
+    useEffect(() => {
         setStatus(props.status);
     }, [props.status]);
 
@@ -25,13 +24,13 @@ const ProfileStatus = (props: ProfileStatusProps) => {
 
 
     const activateEditMode = () => {
-        if (props.isOwner) {
+        if (isOwner) {
             setEditMode(true);
         }
     }
     const deactivateEditMode = () => {
         setEditMode(false);
-        props.updateStatus(status)
+        updateStatus(status)
     }
     const onStatusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setStatus(e.target.value)
@@ -40,7 +39,7 @@ const ProfileStatus = (props: ProfileStatusProps) => {
     return <div>
         {!editMode ? (
             <Box display="flex" alignItems="center">
-                {props.isOwner && !props.status && (
+                {isOwner && !props.status && (
                     <Button variant="contained" onClick={activateEditMode}>
                         Set Status
                     </Button>
