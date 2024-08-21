@@ -69,8 +69,12 @@ const mapStateToProps = (state: rootState) => ({
     initialized: state.app.initialized,
 })
 
+const mapDispatchToProps = {
+    initializeApp
+}
+
 export default compose(
     withRouter,
-    connect(mapStateToProps, {initializeApp})
+    connect(mapStateToProps, mapDispatchToProps)
 )(App);
 
