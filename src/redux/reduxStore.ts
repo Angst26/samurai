@@ -1,14 +1,14 @@
-import {legacy_createStore as createStore, combineReducers, applyMiddleware} from '@reduxjs/toolkit'
+import {/*legacy_createStore as createStore*/ combineReducers /*applyMiddleware*/, configureStore} from '@reduxjs/toolkit'
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
 import {IUsersReducer, usersReducer} from "./usersReducer";
 import {authReducer} from "./authReducer";
-import {thunk as thunkMiddleware} from "redux-thunk";
+// import {thunk as thunkMiddleware} from "redux-thunk";
 import {Reducer} from "@reduxjs/toolkit";
 import { IDialogsPage} from "../components/Dialogs/types";
 import {appReducer} from "./appReducer";
-import { composeWithDevTools } from 'redux-devtools-extension';
+// import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 
@@ -57,6 +57,8 @@ const rootReducer = combineReducers({
 
 
 export type rootState = ReturnType<typeof rootReducer>;
-export const reduxStore = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));
-
+// export const reduxStore = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));
+export const reduxStore = configureStore({
+    reducer: rootReducer,
+})
 
