@@ -1,19 +1,11 @@
-import {useEffect, useState} from "react";
+import React from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
 import {Avatar, Box, CircularProgress, Typography} from "@mui/material";
+import {IProfile} from "../Profile";
 
 interface ProfileInfo {
-    profile: {
-        photos: {
-            large: string | undefined
-        };
-        userId: number;
-        fullName: string;
-        contacts: {
-            vk: string;
-        }
-    }
+    profile: IProfile;
     myId: number;
     status: string;
     updateStatus: (status: string) => void;
@@ -21,7 +13,6 @@ interface ProfileInfo {
 
 const ProfileInfo = (props: ProfileInfo) => {
     console.log('render ProfileInfo');
-    const [count, setCount] = useState(0);
 
 
     // console.log("props.profile: " ,props.profile)
