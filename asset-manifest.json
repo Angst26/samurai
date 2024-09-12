@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Angst26/jurgens-network-samurai/static/css/main.7efcdc06.css",
-    "main.js": "/Angst26/jurgens-network-samurai/static/js/main.9361ba6b.js",
-    "static/js/883.6684bf16.chunk.js": "/Angst26/jurgens-network-samurai/static/js/883.6684bf16.chunk.js",
-    "static/js/626.e6fac273.chunk.js": "/Angst26/jurgens-network-samurai/static/js/626.e6fac273.chunk.js",
-    "index.html": "/Angst26/jurgens-network-samurai/index.html",
-    "main.7efcdc06.css.map": "/Angst26/jurgens-network-samurai/static/css/main.7efcdc06.css.map",
-    "main.9361ba6b.js.map": "/Angst26/jurgens-network-samurai/static/js/main.9361ba6b.js.map",
-    "883.6684bf16.chunk.js.map": "/Angst26/jurgens-network-samurai/static/js/883.6684bf16.chunk.js.map",
-    "626.e6fac273.chunk.js.map": "/Angst26/jurgens-network-samurai/static/js/626.e6fac273.chunk.js.map"
+    "main.css": "/static/css/main.7efcdc06.css",
+    "main.js": "/static/js/main.45255570.js",
+    "static/js/883.6684bf16.chunk.js": "/static/js/883.6684bf16.chunk.js",
+    "static/js/626.e6fac273.chunk.js": "/static/js/626.e6fac273.chunk.js",
+    "index.html": "/index.html",
+    "main.7efcdc06.css.map": "/static/css/main.7efcdc06.css.map",
+    "main.45255570.js.map": "/static/js/main.45255570.js.map",
+    "883.6684bf16.chunk.js.map": "/static/js/883.6684bf16.chunk.js.map",
+    "626.e6fac273.chunk.js.map": "/static/js/626.e6fac273.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7efcdc06.css",
-    "static/js/main.9361ba6b.js"
+    "static/js/main.45255570.js"
   ]
 }
