@@ -1,31 +1,27 @@
-import {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
-import {Avatar, Box, CircularProgress, Typography} from "@mui/material";
+import {Avatar, Box, Button, CircularProgress, Input, Typography} from "@mui/material";
+import {IProfile} from "../Profile";
 
 interface ProfileInfo {
-    profile: {
-        photos: {
-            large: string | undefined
-        };
-        userId: number;
-        fullName: string;
-        contacts: {
-            vk: string;
-        }
-    }
+    profile: IProfile;
     myId: number;
     status: string;
     updateStatus: (status: string) => void;
+    isOwner: boolean;
 }
 
 const ProfileInfo = (props: ProfileInfo) => {
-    console.log('render ProfileInfo');
-    const [count, setCount] = useState(0);
 
+    const [editPhotoClicked, setEditPhotoMode] = useState(false);
+    const handleSetPhoto = () => {
+        setEditPhotoMode(!editPhotoClicked);
+    }
 
     // console.log("props.profile: " ,props.profile)
     return <Box>
+        {props.isOwner && <div>im owner</div>}
         {props.profile ? (
             <Box>
                 <Avatar
@@ -38,15 +34,29 @@ const ProfileInfo = (props: ProfileInfo) => {
             <Preloader/>
         )}
         {props.profile ? (
-            <Box  sx={{padding: '10px', fontStyle: 'italic'}}>
-                <ProfileStatus isOwner={props.myId === props.profile.userId}
+            <Box sx={{padding: '10px', fontStyle: 'italic'}}>
+                {props.isOwner && (
+                    editPhotoClicked ?
+                        (<><Input type={'file'}></Input>
+                        <button onClick={handleSetPhoto}>cancel</button></>)
+                        :
+                        <Button
+                            sx={{margin: '10px'}}
+                            variant={'contained'}
+                            onClick={handleSetPhoto}
+                        >
+                            set photo
+                        </Button>
+                )}
+
+                <ProfileStatus isOwner={props.isOwner}
                                status={props.status}
                                updateStatus={props.updateStatus}/>
 
-                <Typography variant="body1" >
+                <Typography variant="body1">
                     Name: {props.profile.fullName}
                 </Typography>
-                <Typography variant="body1" >
+                <Typography variant="body1">
                     {props.profile.contacts.vk}
                 </Typography>
             </Box>

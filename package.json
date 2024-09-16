@@ -2,6 +2,7 @@
   "name": "samurai",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://angst26.github.io/samurai",
   "dependencies": {
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
@@ -44,7 +45,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate-css-types": "typed-css-modules src/**/*.module.css --outDir src"
+    "generate-css-types": "typed-css-modules src/**/*.module.css --outDir src",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
@@ -98,6 +101,7 @@
     "@types/react-dom": "^18.3.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/testing-library__react": "^10.2.0",
+    "gh-pages": "^6.1.1",
     "jest": "^29.7.0",
     "ts-jest": "^29.2.4",
     "typescript": "^5.5.4"

@@ -1,12 +1,12 @@
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import React, {FC, RefObject} from "react";
-import { Button, Input} from "@mui/material";
+import React, {FC, RefObject, useState} from "react";
+import {Button, Input} from "@mui/material";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 
 
-export interface IDialogsPage {
+interface IDialogsPage {
     dialogs: {
         id: number;
         name: string;
@@ -20,21 +20,34 @@ export interface IDialogsPage {
 
 interface DialogsProps {
     dialogsPage: IDialogsPage;
+    setDialogs: () => void;
 }
 
 const Dialogs: FC<DialogsProps> = (props: DialogsProps) => {
+
+
+
+
+
+
 //Data
+
     const validationSchema = Yup.object(
         {
             newMessageText: Yup.string().min(3, 'message text cannot be empty').max(10, 'message text cannot be more than 255 characters')
         }
     )
 
-    //Arrays by mapping
-    let {dialogs, messages, newMessageText} = props.dialogsPage;
-    let dialogElements = dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
 
-    let messageElements = messages.map(m => <Message content={m.message}/>)
+    //Arrays by mapping
+    const {dialogs, messages, newMessageText} = props.dialogsPage;
+
+
+    if(dialogs.length > 0) {
+        const dialogElements = dialogs.map(d => <DialogItem id={d.id} name={d.name}/>)
+    }
+
+    const messageElements = messages.map(m => <Message content={m.message}/>)
 
     const newMessage: RefObject<HTMLTextAreaElement> = React.createRef()
 
@@ -51,29 +64,37 @@ const Dialogs: FC<DialogsProps> = (props: DialogsProps) => {
 
     })
 
+    const handleRefresh = () => {
+        props.setDialogs()
+    }
+
 
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <Input
-                   id="messageText"
-                   name="messageText"
-                   type="text"
-                   style={{backgroundColor: 'white'}}
-                   placeholder="Type message"
-                   onChange={formik.handleChange}
-                   onBlur={formik.handleBlur}
-                   value={formik.values.messageText}
-            />
-            {formik.touched.messageText && formik.errors.messageText ? (
-                <div>{formik.errors.messageText}</div>
-            ): null}
-            <div>
-                <Button
-                    type='submit'
-                    disabled={formik.isSubmitting}
-                >Send</Button>
-            </div>
-        </form>
+        <>
+            <Button onClick={handleRefresh}>refresh</Button>
+
+            <form onSubmit={formik.handleSubmit}>
+                <Input
+                    id="messageText"
+                    name="messageText"
+                    type="text"
+                    style={{backgroundColor: 'white'}}
+                    placeholder="Type message"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.messageText}
+                />
+                {formik.touched.messageText && formik.errors.messageText ? (
+                    <div>{formik.errors.messageText}</div>
+                ) : null}
+                <div>
+                    <Button
+                        type='submit'
+                        disabled={formik.isSubmitting}
+                    >Send</Button>
+                </div>
+            </form>
+        </>
     )
 }
 

@@ -40,22 +40,26 @@ const ProfileStatus = ({isOwner, updateStatus, ...props}: ProfileStatusProps) =>
         {!editMode ? (
             <Box display="flex" alignItems="center">
                 {isOwner && !props.status && (
-                    <Button variant="contained" onClick={activateEditMode}>
+                    <Button variant="contained" onClick={activateEditMode} sx={{margin: '10px'}}>
                         Set Status
                     </Button>
                 )}
                 {props.status && (
-                    <div
+                    <Box
                         onDoubleClick={activateEditMode}
-                        style={{
+                        sx={{
                             marginLeft: 2,
-                            backgroundColor: '#f5f5f5',
+                            backgroundColor: '#a419d2',
+                            border: 'solid',
+                            borderColor: '#dc009e',
                             borderRadius: 1,
-                            padding: 1
+                            padding: 1,
+                            margin: '10px',
+                            color: 'white'
                         }}
                     >
                         {props.status}
-                    </div>)}
+                    </Box>)}
             </Box>
         ) : (
             <TextField
@@ -64,7 +68,7 @@ const ProfileStatus = ({isOwner, updateStatus, ...props}: ProfileStatusProps) =>
                 autoFocus
                 onBlur={deactivateEditMode}
                 value={status}
-                label="Status"
+                placeholder={'set new status...'}
             />
         )}
     </div>

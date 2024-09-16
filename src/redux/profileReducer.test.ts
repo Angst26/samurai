@@ -4,8 +4,8 @@ import {describe, expect, test} from '@jest/globals';
 describe('ProfileReducer', () => {
         test('length of posts should be incremented', () => {
             // 1.test data
-            let action = addPost()
-            let state = {
+            const action = addPost()
+            const state = {
                 posts: [
                     {id: 1, content: '', likesCount: 0},
                 ],
@@ -17,7 +17,7 @@ describe('ProfileReducer', () => {
 
 
             // 2. action
-            let newState = profileReducer(state, action)
+            const newState = profileReducer(state, action)
             // 3.expectations
 
             expect(newState.posts.length).toBe(state.posts.length + 1);

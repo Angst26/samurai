@@ -3,7 +3,7 @@ import axios from "axios";
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     headers: {
-        'API-KEY': '8f870be1-6617-437e-b439-4be6615cc3cb'
+        'API-KEY': '4eedc4cf-096e-4615-948c-60f40f4ecf07'
     },
     withCredentials: true,
 })
@@ -33,10 +33,6 @@ export const usersAPI = {
             })
     },
 
-    getProfile(id) {
-        console.warn('Obsolete method.Please use profileAPI obj instead.')
-        return profileAPI.getProfile(id)
-    }
 }
 
 export const authAPI = {
@@ -77,6 +73,12 @@ export const profileAPI = {
             .then(response => {
                 return response.data;
             })
+    },
+}
+
+export const dialogsAPI = {
+    getAllDialogs(){
+        return instance.get(`dialogs`)
     }
 }
 

@@ -1,0 +1,10 @@
+// .eslintrc.json
+{
+  "extends": [
+    "react-app",
+    "react-app/jest"
+  ],
+  "rules": {
+    "react/prop-types": "off" // Disables prop-types checking
+  }
+}

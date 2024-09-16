@@ -5,10 +5,10 @@ import {Box, Stack} from "@mui/material";
 
 const Users = (props) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
 
-    let users = props.usersList.map(user => (
+    const users = props.usersList.map(user => (
         <User
             key={user.id}
             followUser={props.followUser}
