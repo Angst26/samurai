@@ -6,9 +6,10 @@ const CHANGE_NEW_POST_TEXT = 'samurai-network/profile-reducer/CHANGE-NEW-POST-TE
 const SET_USER_PROFILE = 'samurai-network/profile-reducer/SET_USER_PROFILE';
 const SET_CURRENT_USER_ID = 'samurai-network/profile-reducer/SET_CURRENT_USER_ID';
 const SET_STATUS = 'samurai-network/profile-reducer/SET_STATUS';
+const GET_PROFILE_PHOTOS = 'GET_PROFILE_PHOTOS';
 
 
-let initialState = {
+const initialState: IProfileReducer = {
     posts: [
         {id: 1, content: '', likesCount: 0},
     ],
@@ -31,7 +32,7 @@ export interface IProfileReducer {
 }
 
 
-export const profileReducer = (state: IProfileReducer = initialState, action: any) => {
+export const profileReducer = (state = initialState, action: any) => {
 
     switch (action.type) {
         case ADD_POST: {

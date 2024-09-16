@@ -9,18 +9,8 @@ export interface IProfile {
     };
     userId: number;
     fullName: string;
-    contacts: {
-        "skype": string,
-        "vk": string,
-        "facebook": string,
-        "icq": string,
-        "email": string,
-        "googlePlus": string,
-        "twitter": string,
-        "instagram": string,
-        "whatsApp": string
+    contacts: Record<string, string>;
 
-    };
 }
 
 interface ProfileProps {
@@ -28,12 +18,13 @@ interface ProfileProps {
     profile: IProfile
     status: string;
     updateStatus: (status: string) => void;
+    isOwner: boolean;
 }
 
 
 const Profile = (props: ProfileProps) => {
     return <div>
-        <ProfileInfo myId={props.myId} profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+        <ProfileInfo isOwner={props.isOwner} myId={props.myId} profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
         <MyPostsContainer/>
     </div>
 }

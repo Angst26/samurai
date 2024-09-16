@@ -34,6 +34,8 @@ export const mapStateToProps = (state: rootState) => ({
 })
 
 
+
 export default  connect(mapStateToProps,
     { logout}
+    // @ts-ignore
 )(HeaderContainer);

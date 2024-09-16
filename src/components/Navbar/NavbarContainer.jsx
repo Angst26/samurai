@@ -5,7 +5,8 @@ import {compose} from "redux";
 
 let mapStateToProps = (state) => {
     return {
-        friendsList: state.sidebar.friendsList
+        friendsList: state.sidebar.friendsList,
+        myId: state.profilePage.myId,
     }
 }
 

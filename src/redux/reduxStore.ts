@@ -46,12 +46,12 @@ interface AppState {
 }
 
 const rootReducer = combineReducers({
-    profilePage: profileReducer as Reducer<ProfileState>,
-    dialogsPage: dialogsReducer as Reducer<IDialogsPage>,
-    usersPage: usersReducer as Reducer<IUsersReducer>,
-    sidebar: sidebarReducer as Reducer<SidebarState>,
-    auth: authReducer as Reducer<AuthState>,
-    app: appReducer as Reducer<AppState>,
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
+    usersPage: usersReducer,
+    sidebar: sidebarReducer,
+    auth: authReducer,
+    app: appReducer,
 })
 
 

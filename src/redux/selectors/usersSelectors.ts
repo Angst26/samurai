@@ -1,12 +1,13 @@
-import {rootState} from "./reduxStore";
+import {rootState} from "../reduxStore";
 import {createSelector} from "reselect";
+import User from "../../components/Users/User/User";
 ////////////////////////
 const getUsers = (state: rootState) => {
     return state.usersPage.usersList
 }
 
 export const getUsersSelector = createSelector(getUsers, (users) => {
-    return users.filter((user) => true)
+    return users
 })
 
 ////////////////////////

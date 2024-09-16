@@ -1,5 +1,10 @@
-const ADD_MESSAGE = 'ADD_MESSAGE';
-const CHANGE_NEW_MESSAGE_TEXT = 'CHANGE_NEW_MESSAGE_TEXT'
+import {createSlice} from "@reduxjs/toolkit";
+import {dialogsAPI} from "../api/api";
+
+const ADD_MESSAGE = 'dialogsPage/ADD_MESSAGE';
+const CHANGE_NEW_MESSAGE_TEXT = 'dialogsPage/CHANGE_NEW_MESSAGE_TEXT'
+const SET_DIALOGS = 'dialogsPage/SET_DIALOGS'
+
 
 let initialState = {
     dialogs: [
@@ -18,7 +23,7 @@ let initialState = {
     newMessageText: String,
 }
 
-export let dialogsReducer = (state = initialState, action) => {
+export const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_MESSAGE:
@@ -37,11 +42,40 @@ export let dialogsReducer = (state = initialState, action) => {
                 ...state,
                 newMessageText: action.message,
             }
+        case SET_DIALOGS:
+            return {
+                ...state,
+                dialogs: action.dialogs,
+            }
         default:
             return state
     }
 }
 
 export const changeNewMessageTextAC = (text) => ({type: CHANGE_NEW_MESSAGE_TEXT, message: text});
-
 export const addMessageAC = () => ({type: ADD_MESSAGE})
+const setDialogsAC = (dialogs) => {
+    return {type: SET_DIALOGS, dialogs};
+}
+
+//thunks
+
+export const setDialogsThunk = () => async (dispatch) => {
+    const dialogs = await dialogsAPI.getAllDialogs()
+    dispatch(setDialogsAC(dialogs))
+}
+
+
+///////////////////refactoring
+// const dialogsSlice = createSlice({
+//     name: "dialogs",
+//     initialState: initialState,
+//     reducers: {
+//         addMessage: (state, action) => {
+//
+//         }
+//     }
+// })
+
+
+

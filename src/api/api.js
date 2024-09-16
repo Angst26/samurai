@@ -33,10 +33,6 @@ export const usersAPI = {
             })
     },
 
-    getProfile(id) {
-        console.warn('Obsolete method.Please use profileAPI obj instead.')
-        return profileAPI.getProfile(id)
-    }
 }
 
 export const authAPI = {
@@ -77,6 +73,12 @@ export const profileAPI = {
             .then(response => {
                 return response.data;
             })
+    },
+}
+
+export const dialogsAPI = {
+    getAllDialogs(){
+        return instance.get(`dialogs`)
     }
 }
 

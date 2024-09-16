@@ -9,10 +9,19 @@ import PeopleIcon from '@mui/icons-material/People';
 import ArticleIcon from '@mui/icons-material/Article';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import SettingsIcon from '@mui/icons-material/Settings';
+import {useDispatch} from "react-redux";
+import {useEffect, useState} from "react";
 
 
 const Navbar = (props) => {
+    const {photo, setPhoto} = useState(null);
 
+    // useEffect(() => {
+    //     get
+    // }, [props.myId])
+
+    const {myId} = useDispatch(state => state.profilePage.myId);
+    console.log(myId);
     // let friends = props.friendsList.map((friend, index) => (
     //     <ListItem key={index}>
     //         <Friend img={friend.img} name={friend.name} postname={friend.postname}/>
@@ -27,37 +36,37 @@ const Navbar = (props) => {
             </ListItem>
             <ListItemButton component={NavLink} to='/profile'>
                 <ListItemIcon>
-                    <HomeIcon />
+                    <HomeIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Profile"/>
             </ListItemButton>
             <ListItemButton component={NavLink} to='/dialogs'>
                 <ListItemIcon>
-                    <MailIcon />
+                    <MailIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Dialogs"/>
             </ListItemButton>
             <ListItemButton component={NavLink} to='/users'>
                 <ListItemIcon>
-                    <PeopleIcon />
+                    <PeopleIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Users"/>
             </ListItemButton>
             <ListItemButton component={NavLink} to='/news'>
                 <ListItemIcon>
-                    <ArticleIcon />
+                    <ArticleIcon/>
                 </ListItemIcon>
                 <ListItemText primary="News"/>
             </ListItemButton>
             <ListItemButton component={NavLink} to='/music'>
                 <ListItemIcon>
-                    <MusicNoteIcon />
+                    <MusicNoteIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Music"/>
             </ListItemButton>
             <ListItemButton component={NavLink} to='/settings'>
                 <ListItemIcon>
-                    <SettingsIcon />
+                    <SettingsIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Settings"/>
             </ListItemButton>

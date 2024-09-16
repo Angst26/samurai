@@ -11,12 +11,23 @@ class ProfileContainer extends React.Component {
         super(props)
         this.props.setCurrentId();
     }
-    shouldComponentUpdate(nextProps, nextState){
-        return nextProps != this.props ||  nextState != this.state;
-    }f
+
+    state = {
+        isOwner: false,
+    }
+
+
+
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return (nextProps !== this.props || nextState !== this.state);
+    }
+
+    f
 
     componentDidMount() {
-        let userId = this.props.router.params.userId
+        const userId = this.props.router.params.userId || this.props.myId;
+        this.setState({isOwner: userId === this.props.myId});
         if (userId) {
             this.fetchProfile(userId);
         } else {
@@ -31,7 +42,7 @@ class ProfileContainer extends React.Component {
     }
 
     fetchProfileIfNeeded() {
-        let userId = this.props.myId || this.props.router.params.userId;
+        const userId = this.props.myId || this.props.router.params.userId;
         if (userId) {
             console.log("Fetching profile for userId:", userId);
             this.fetchProfile(userId);
@@ -45,6 +56,7 @@ class ProfileContainer extends React.Component {
         if (userId) {
             this.props.getUserProfile(userId)
             this.props.getStatus(userId)
+
         } else {
             console.error("fetchProfile called without userId");
         }
@@ -55,7 +67,9 @@ class ProfileContainer extends React.Component {
     render() {
         console.log('myID ', this.props.myId)
         return (
-            <Profile {...this.props} myId={this.props.myId} profile={this.props.profile} status={this.props.status}
+            <Profile {...this.props}
+                     isOwner={this.state.isOwner}
+                     myId={this.props.myId} profile={this.props.profile} status={this.props.status}
                      updateStatus={this.props.updateStatus}/>
         )
     }

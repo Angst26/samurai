@@ -22,6 +22,7 @@ import Signup from "./components/Signup/Signup";
 
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
 const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
+// const ProfileContainer = React.lazy(() => import('./components/Profile/NewProfileContainer'))
 const LoginPage = React.lazy(() => import('./components/Login/LoginForm'))
 
 type AProps = {
@@ -80,7 +81,7 @@ const mapDispatchToProps = {
     initializeApp
 }
 
-export default compose(
+export default  compose(
     withRouter,
     connect(mapStateToProps, mapDispatchToProps)
 )(App);
